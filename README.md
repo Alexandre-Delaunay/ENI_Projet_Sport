@@ -2,7 +2,7 @@
 
 Cahier des charges:
 
-Besoin:
+Besoins:
   - Une application pour gérer des courses de spot (running, vélo, bâteaux)
   - Des personnes peuvent s'inscrire à des courses, et une seule fois
   - Des courses possèdent des POI (Point of Interest). Ces points sont des points GPS pour gérer le départ, l'arrivée, checkpoints, ravitaillement) et ils peuvent donc être associés à une catégorie
