@@ -1,6 +1,6 @@
 # ENI_Projet_Sport
 
-Cahier des charges:
+### Cahier des charges:
 
 Besoins:
   - Une application pour gérer des courses de spot (running, vélo, bâteaux)
@@ -14,4 +14,5 @@ Contraintes:
   - Gestion des coordonnées au format GPX
   - Code First
 
+### Diagramme de class
 ![Class Diagram](diagram_class.PNG?raw=true "Diagramme de classe")
