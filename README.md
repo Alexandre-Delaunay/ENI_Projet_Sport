@@ -13,3 +13,5 @@ Contraintes:
   - Utilisation ASP .NETIdentify (Gestion des Users et des Rôles)
   - Gestion des coordonnées au format GPX
   - Code First
+
+![Class Diagram](diagram_class.png?raw=true "Diagramme de classe")
