@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ENI_Projet_Sport", "ENI_Pro
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ENI_Projet_Sport.Tests", "ENI_Projet_Sport.Tests\ENI_Projet_Sport.Tests.csproj", "{1C6E5774-280C-4950-B3BF-E42FA2A7A5E8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BO", "BO\BO.csproj", "{002A6C2C-2CCA-4893-B24B-DD740A9A8AFF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{1C6E5774-280C-4950-B3BF-E42FA2A7A5E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1C6E5774-280C-4950-B3BF-E42FA2A7A5E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1C6E5774-280C-4950-B3BF-E42FA2A7A5E8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{002A6C2C-2CCA-4893-B24B-DD740A9A8AFF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{002A6C2C-2CCA-4893-B24B-DD740A9A8AFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{002A6C2C-2CCA-4893-B24B-DD740A9A8AFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{002A6C2C-2CCA-4893-B24B-DD740A9A8AFF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
