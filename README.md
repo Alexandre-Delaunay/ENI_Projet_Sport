@@ -14,4 +14,4 @@ Contraintes:
   - Gestion des coordonnées au format GPX
   - Code First
 
-![Class Diagram](diagram_class.png?raw=true "Diagramme de classe")
+![Class Diagram](ENI_Projet_Sport/diagram_class.PNG?raw=true "Diagramme de classe")
