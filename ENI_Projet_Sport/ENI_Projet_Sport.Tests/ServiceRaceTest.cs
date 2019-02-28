@@ -1,8 +1,8 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ENI_Projet_Sport.OV;
-using ENI_Projet_Sport.Base;
-using ENI_Projet_Sport.Services;
+using BO.Models;
+using BO.Base;
+using BO.Services;
 
 namespace ENI_Projet_Sport.Tests
 {
