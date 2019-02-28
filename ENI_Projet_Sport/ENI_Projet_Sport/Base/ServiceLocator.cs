@@ -62,7 +62,7 @@ namespace ENI_Projet_Sport.Base
             }
             catch (Exception)
             {
-
+                throw new ApplicationException("An error occured during the commit");
             }
 
             return success;

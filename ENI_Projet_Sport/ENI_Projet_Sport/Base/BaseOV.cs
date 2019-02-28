@@ -9,7 +9,7 @@ namespace ENI_Projet_Sport.Base
 {
     public class BaseOV
     {
-        public int id { get; set; }
+        public int Id { get; set; }
         public DateTime DateMAJ { get; set; }
         public ServiceLocator ServiceLocator { get; set; }
         public BaseOV()

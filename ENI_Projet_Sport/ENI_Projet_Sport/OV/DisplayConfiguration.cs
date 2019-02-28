@@ -13,6 +13,6 @@ namespace ENI_Projet_Sport.OV
         public Guid Guid { get; set; }
         public bool SpeedAvg { get; set; }
         public bool SpeedMax { get; set; }
-        //public UnitDistance UnitDistance { get; set; }
+        public UnitDistance UnitDistance { get; set; }
     }
 }
