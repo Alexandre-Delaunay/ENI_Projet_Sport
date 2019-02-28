@@ -67,9 +67,21 @@ namespace ENI_Projet_Sport.Base
             return success;
         }
 
-        public void Commit()
+        public bool Commit()
         {
-            _context.SaveChanges();
+            var success = false;
+
+            try
+            {
+                _context.SaveChanges();
+                success = true;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+            return success;
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ENI_Projet_Sport.Models;
+using ENI_Projet_Sport.OV;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -9,9 +11,12 @@ namespace ENI_Projet_Sport.Base
 {
     public class BaseContext : DbContext
     {
-        //public virtual DbSet<Arme> Armes { get; set; }
-
-        //public virtual DbSet<Samourai> Samourais { get; set; }
+        public virtual DbSet<OV.ApplicationUser> ApplicationUsers{ get; set; }
+        public virtual DbSet<Category> Categories { get; set; }
+        public virtual DbSet<DisplayConfiguration> DisplayConfigurations { get; set; }
+        public virtual DbSet<Inscription> Inscriptions { get; set; }
+        public virtual DbSet<Personne> Personnes { get; set; }
+        public virtual DbSet<Race> Races { get; set; }
 
         public BaseContext()
             : base("BaseContext")

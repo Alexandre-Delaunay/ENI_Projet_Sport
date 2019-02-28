@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ENI_Projet_Sport.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,9 +9,9 @@ namespace ENI_Projet_Sport.Base
 {
     public class BaseOV
     {
-        public IServiceLocator ServiceLocator { get; set; }
         public int id { get; set; }
-
+        public DateTime DateMAJ { get; set; }
+        public ServiceLocator ServiceLocator { get; set; }
         public BaseOV()
         {
             Initialize();
@@ -18,7 +19,7 @@ namespace ENI_Projet_Sport.Base
 
         public void Initialize()
         {
-            ServiceLocator = new ServiceLocator();
+            ServiceLocator = ServiceLocator.Instance;
         }
     }
 }

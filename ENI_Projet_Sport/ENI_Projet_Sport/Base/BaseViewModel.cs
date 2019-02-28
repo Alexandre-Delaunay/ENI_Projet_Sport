@@ -8,7 +8,7 @@ namespace ENI_Projet_Sport.Base
 {
     public class BaseViewModel
     {
-        public IServiceLocator ServiceLocator { get; set; }
+        public ServiceLocator ServiceLocator { get; set; }
 
         public BaseViewModel()
         {
@@ -17,7 +17,7 @@ namespace ENI_Projet_Sport.Base
 
         public void Initialize()
         {
-            ServiceLocator = new ServiceLocator();
+            ServiceLocator = ServiceLocator.Instance;
         }
     }
 }
