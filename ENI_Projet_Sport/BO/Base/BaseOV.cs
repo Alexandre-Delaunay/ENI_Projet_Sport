@@ -9,15 +9,15 @@ namespace BO.Base
 {
     public class BaseOV
     {
-        public int Id { get; set; }
-        public DateTime DateMAJ { get; set; }
+        public virtual int Id { get; set; }
+        public virtual DateTime DateMAJ { get; set; }
         public ServiceLocator ServiceLocator { get; set; }
         public BaseOV()
         {
             Initialize();
         }
 
-        public void Initialize()
+        public virtual void Initialize()
         {
             ServiceLocator = ServiceLocator.Instance;
         }

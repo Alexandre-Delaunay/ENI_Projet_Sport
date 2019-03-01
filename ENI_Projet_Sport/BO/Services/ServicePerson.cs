@@ -7,30 +7,30 @@ using BO.Models;
 
 namespace BO.Services
 {
-    public class ServicePersonne : IServicePersonne
+    public class ServicePerson : IServicePerson
     {
-        private BaseDao<Personne> _dao = new BaseDao<Personne>();
-        public bool Add(Personne personne)
+        private BaseDao<Person> _dao = new BaseDao<Person>();
+        public bool Add(Person personne)
         {
             return _dao.Insert(personne);
         }
 
-        public bool Delete(Personne personne)
+        public bool Delete(Person personne)
         {
             return _dao.Delete(personne);
         }
 
-        public List<Personne> GetAll()
+        public List<Person> GetAll()
         {
             return _dao.GetAll();
         }
 
-        public Personne GetById(int id)
+        public Person GetById(int id)
         {
             return _dao.GetByID(id);
         }
 
-        public bool Update(Personne personne)
+        public bool Update(Person personne)
         {
             return _dao.Update(personne);
         }
