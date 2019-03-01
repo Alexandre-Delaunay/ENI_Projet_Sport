@@ -9,9 +9,9 @@ namespace BO.Services
 {
     public interface IServiceRaceType
     {
-        bool Add(RaceType typeCourse);
-        bool Delete(RaceType typeCourse);
-        bool Update(RaceType typeCourse);
+        bool Add(RaceType raceType);
+        bool Delete(RaceType raceType);
+        bool Update(RaceType raceType);
         List<RaceType> GetAll();
         RaceType GetById(int id);
     }

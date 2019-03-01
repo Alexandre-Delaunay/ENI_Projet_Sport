@@ -27,6 +27,8 @@ namespace BO.Models
 
         public virtual List<POI> POIs { get; set; }
 
+        public virtual List<Person> Persons { get; set; }
+
         public Race()
         {
             Initialize();
@@ -37,6 +39,7 @@ namespace BO.Models
             base.Initialize();
 
             POIs = new List<POI>();
+            Persons = new List<Person>();
         }
     }
 }

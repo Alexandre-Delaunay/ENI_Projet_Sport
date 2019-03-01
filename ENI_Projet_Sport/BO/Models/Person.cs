@@ -32,12 +32,5 @@ namespace BO.Models
         {
             Initialize();
         }
-
-        public override void Initialize()
-        {
-            base.Initialize();
-
-            Races = new List<Race>();
-        }
     }
 }

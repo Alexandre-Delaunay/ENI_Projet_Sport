@@ -116,7 +116,6 @@
     <Compile Include="Models\DisplayConfiguration.cs" />
     <Compile Include="Models\Person.cs" />
     <Compile Include="Models\RaceType.cs" />
-    <Compile Include="Models\UnitDistance.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\IServiceCategoryPOI.cs" />
     <Compile Include="Services\IServiceDisplayConfiguration.cs" />
@@ -150,11 +149,4 @@
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
 </Project>

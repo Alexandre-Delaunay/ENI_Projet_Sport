@@ -13,7 +13,6 @@ namespace BO.Models
 
     public enum TypeUnit
     {
-        None,
         KmPerHour,
         MeterPerHour
     }
