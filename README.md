@@ -14,5 +14,5 @@ Contraintes:
   - Gestion des coordonnées au format GPX
   - Code First
 
-### Diagramme de class
+### Diagramme de classes
 ![Class Diagram](diagram_class.png?raw=true "Diagramme de classe")
