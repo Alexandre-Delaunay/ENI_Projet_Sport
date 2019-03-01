@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ENI_Projet_Sport.Models;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -9,10 +10,10 @@ namespace BO.Base
 {
     public class BaseDao<T> : IBaseDao<T> where T : class
     {
-        private BaseContext _context { get; set; }
+        private ApplicationDbContext _context { get; set; }
         public BaseDao()
         {
-            _context = new BaseContext();
+            _context = new ApplicationDbContext();
         }
         public bool Delete(T entity)
         {

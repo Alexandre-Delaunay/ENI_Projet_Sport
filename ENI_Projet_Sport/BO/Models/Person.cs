@@ -25,6 +25,9 @@ namespace BO.Models
 
         public virtual List<Race> Races { get; set; }
 
+        // user ID from AspNetUser table.
+        public string OwnerID { get; set; }
+
         public Person()
         {
             Initialize();
