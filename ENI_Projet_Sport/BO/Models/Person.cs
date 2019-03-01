@@ -23,18 +23,9 @@ namespace BO.Models
 
         public virtual DisplayConfiguration DisplayConfiguration { get; set; }
 
-        public virtual List<Race> Races { get; set; }
-
         public Person()
         {
             Initialize();
-        }
-
-        public override void Initialize()
-        {
-            base.Initialize();
-
-            Races = new List<Race>();
         }
     }
 }
