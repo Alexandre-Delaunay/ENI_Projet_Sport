@@ -1,29 +1,22 @@
 ﻿using BO.Base;
-using BO.Services;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
 
-namespace BO.Models
+namespace ENI_Projet_Sport.ViewModels
 {
-    public class Person : BaseOV
+    public class PersonViewModel : BaseViewModel
     {
-        [MaxLength(50)]
+        public virtual int Id { get; set; }
+        public virtual DateTime DateMAJ { get; set; }
         public virtual string FirstName { get; set; }
-
-        [MaxLength(50)]
         public virtual string LastName { get; set; }
-
-        [DataType(DataType.PhoneNumber)]
         public virtual string PhoneNumber { get; set; }
 
         public virtual DateTime BirthDate { get; set; }
 
-        public virtual DisplayConfiguration DisplayConfiguration { get; set; }
+        public virtual DisplayConfigurationViewModel DisplayConfiguration { get; set; }
 
-        public Person()
+        public PersonViewModel()
         {
             Initialize();
         }

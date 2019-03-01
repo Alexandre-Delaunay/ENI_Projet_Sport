@@ -209,6 +209,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Extensions\MapperExtension.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -219,11 +220,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\CategoryPOIViewModel.cs" />
-    <Compile Include="ViewModels\CreateEditPersonneViewModel.cs" />
+    <Compile Include="ViewModels\CreateEditPersonViewModel.cs" />
     <Compile Include="ViewModels\CreateEditPOIViewModel.cs" />
     <Compile Include="ViewModels\CreateEditRaceViewModel.cs" />
     <Compile Include="ViewModels\DisplayConfigurationViewModel.cs" />
-    <Compile Include="ViewModels\PersonneViewModel.cs" />
+    <Compile Include="ViewModels\PersonViewModel.cs" />
     <Compile Include="ViewModels\POIViewModel.cs" />
     <Compile Include="ViewModels\RaceTypeViewModel.cs" />
     <Compile Include="ViewModels\RaceViewModel.cs" />

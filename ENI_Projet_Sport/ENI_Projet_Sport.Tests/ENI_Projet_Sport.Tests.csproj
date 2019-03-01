@@ -40,6 +40,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Web" />
   </ItemGroup>
   <Choose>
     <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
@@ -49,11 +50,14 @@
     </When>
     <Otherwise>
       <ItemGroup>
-        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework" />
+        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework">
+          <Private>False</Private>
+        </Reference>
       </ItemGroup>
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="MapperConfigTest.cs" />
     <Compile Include="ServiceCategoryPOITest.cs" />
     <Compile Include="ServiceDisplayConfigurationTest.cs" />
     <Compile Include="ServicePersonTest.cs" />
@@ -63,6 +67,10 @@
     <Compile Include="ServiceRaceTypeTest.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BO\BO.csproj">
+      <Project>{002a6c2c-2cca-4893-b24b-dd740a9a8aff}</Project>
+      <Name>BO</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ENI_Projet_Sport\ENI_Projet_Sport.csproj">
       <Project>{cffcff00-197e-4cbb-93ee-2c511299a483}</Project>
       <Name>ENI_Projet_Sport</Name>

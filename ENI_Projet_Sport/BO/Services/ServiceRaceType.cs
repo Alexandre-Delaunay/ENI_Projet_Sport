@@ -11,14 +11,14 @@ namespace BO.Services
     public class ServiceRaceType : IServiceRaceType
     {
         private BaseDao<RaceType> _dao = new BaseDao<RaceType>();
-        public bool Add(RaceType typeCourse)
+        public bool Add(RaceType raceType)
         {
-            return _dao.Insert(typeCourse);
+            return _dao.Insert(raceType);
         }
 
-        public bool Delete(RaceType typeCourse)
+        public bool Delete(RaceType raceType)
         {
-            return _dao.Delete(typeCourse);
+            return _dao.Delete(raceType);
         }
 
         public List<RaceType> GetAll()
@@ -31,9 +31,9 @@ namespace BO.Services
             return _dao.GetByID(id);
         }
 
-        public bool Update(RaceType typeCourse)
+        public bool Update(RaceType raceType)
         {
-            return _dao.Update(typeCourse);
+            return _dao.Update(raceType);
         }
         public bool Commit()
         {

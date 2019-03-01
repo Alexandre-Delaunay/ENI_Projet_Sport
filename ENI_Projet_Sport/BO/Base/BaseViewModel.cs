@@ -16,7 +16,7 @@ namespace BO.Base
             Initialize();
         }
 
-        public void Initialize()
+        public virtual void Initialize()
         {
             ServiceLocator = ServiceLocator.Instance;
         }

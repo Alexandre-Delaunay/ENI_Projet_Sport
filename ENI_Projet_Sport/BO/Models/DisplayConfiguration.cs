@@ -8,6 +8,11 @@ namespace BO.Models
 {
     public class DisplayConfiguration : BaseOV
     {
-        public virtual UnitDistance UnitDistance { get; set; }
+        public TypeUnit TypeUnite { get; set; }
+    }
+    public enum TypeUnit
+    {
+        KmPerHour,
+        MeterPerHour
     }
 }

@@ -63,7 +63,6 @@
     <Compile Include="Models\DisplayConfiguration.cs" />
     <Compile Include="Models\Person.cs" />
     <Compile Include="Models\RaceType.cs" />
-    <Compile Include="Models\UnitDistance.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\IServiceCategoryPOI.cs" />
     <Compile Include="Services\IServiceDisplayConfiguration.cs" />
