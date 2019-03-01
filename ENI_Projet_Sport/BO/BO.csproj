@@ -57,6 +57,11 @@
     <Compile Include="Base\IServiceBase.cs" />
     <Compile Include="Base\IServiceLocator.cs" />
     <Compile Include="Base\ServiceLocator.cs" />
+    <Compile Include="Migrations\201903010932526_Create DB.cs" />
+    <Compile Include="Migrations\201903010932526_Create DB.Designer.cs">
+      <DependentUpon>201903010932526_Create DB.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CategoryPOI.cs" />
     <Compile Include="Models\POI.cs" />
     <Compile Include="Models\Race.cs" />
@@ -81,6 +86,11 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201903010932526_Create DB.resx">
+      <DependentUpon>201903010932526_Create DB.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
