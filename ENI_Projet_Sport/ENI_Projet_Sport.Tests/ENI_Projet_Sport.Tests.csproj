@@ -54,14 +54,15 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="ServiceCategoryPOITest.cs" />
+    <Compile Include="ServiceDisplayConfigurationTest.cs" />
+    <Compile Include="ServicePersonTest.cs" />
+    <Compile Include="ServicePOITest.cs" />
     <Compile Include="ServiceRaceTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServiceRaceTypeTest.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BO\BO.csproj">
-      <Project>{002a6c2c-2cca-4893-b24b-dd740a9a8aff}</Project>
-      <Name>BO</Name>
-    </ProjectReference>
     <ProjectReference Include="..\ENI_Projet_Sport\ENI_Projet_Sport.csproj">
       <Project>{cffcff00-197e-4cbb-93ee-2c511299a483}</Project>
       <Name>ENI_Projet_Sport</Name>
