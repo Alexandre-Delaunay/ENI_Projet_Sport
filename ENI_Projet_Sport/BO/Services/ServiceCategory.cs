@@ -7,32 +7,32 @@ using BO.Models;
 
 namespace BO.Services
 {
-    public class ServiceCategory : IServiceCategory
+    public class ServiceCategoryPOI : IServiceCategoryPOI
     {
-        private BaseDao<Category> _dao = new BaseDao<Category>();
-        public bool Add(Category category)
+        private BaseDao<CategoryPOI> _dao = new BaseDao<CategoryPOI>();
+        public bool Add(CategoryPOI CategoryPOI)
         {
-            return _dao.Insert(category);
+            return _dao.Insert(CategoryPOI);
         }
 
-        public bool Delete(Category category)
+        public bool Delete(CategoryPOI CategoryPOI)
         {
-            return _dao.Delete(category);
+            return _dao.Delete(CategoryPOI);
         }
 
-        public List<Category> GetAll()
+        public List<CategoryPOI> GetAll()
         {
             return _dao.GetAll();
         }
 
-        public Category GetById(int id)
+        public CategoryPOI GetById(int id)
         {
             return _dao.GetByID(id);
         }
 
-        public bool Update(Category category)
+        public bool Update(CategoryPOI CategoryPOI)
         {
-            return _dao.Update(category);
+            return _dao.Update(CategoryPOI);
         }
         public bool Commit()
         {

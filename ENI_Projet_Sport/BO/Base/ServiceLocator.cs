@@ -17,9 +17,8 @@ namespace BO.Base
         {
             services = new Dictionary<object, object>();
 
-            services.Add(typeof(IServiceCategory), new ServiceCategory());
-            services.Add(typeof(IServiceInscription), new ServiceInscription());
-            services.Add(typeof(IServicePersonne), new ServicePersonne());
+            services.Add(typeof(IServiceCategoryPOI), new ServiceCategoryPOI());
+            services.Add(typeof(IServicePerson), new ServicePerson());
             services.Add(typeof(IServiceRace), new ServiceRace());
         }
 

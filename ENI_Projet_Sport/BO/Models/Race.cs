@@ -1,21 +1,42 @@
 ﻿using BO.Base;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Web;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace BO.Models
 {
-    public class Race: BaseOV
+    public class Race : BaseOV
     {
-        public string City { get; set; }
-        public DateTime DateEnd { get; set; }
-        public DateTime DateStart { get; set; }
-        public string Description { get; set; }
-        public List<Inscription> Inscriptions { get; set; }
-        //public List<Poi> Pois { get; set; }
-        public float Price { get; set; }        
-        public string Title { get; set; }
-        public string ZipCode { get; set; }
+        [MaxLength(50)]
+        public virtual string Name { get; set; }
+
+        public virtual int PlacesNumber { get; set; }
+
+        [MaxLength(50)]
+        public virtual string City { get; set; }
+
+        public virtual string ZipCode { get; set; }
+
+        public virtual float Price { get; set; }
+
+        [MaxLength(200)]
+        public virtual string Description { get; set; }
+
+        public virtual List<POI> POIs { get; set; }
+
+        public Race()
+        {
+            Initialize();
+        }
+
+        public override void Initialize()
+        {
+            base.Initialize();
+
+            POIs = new List<POI>();
+        }
     }
 }

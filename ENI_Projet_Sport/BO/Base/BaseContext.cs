@@ -10,12 +10,12 @@ namespace BO.Base
 {
     public class BaseContext : DbContext
     {
-        public virtual DbSet<Models.ApplicationUser> ApplicationUsers{ get; set; }
-        public virtual DbSet<Category> Categories { get; set; }
+        public virtual DbSet<CategoryPOI> CategoriesPOI { get; set; }
         public virtual DbSet<DisplayConfiguration> DisplayConfigurations { get; set; }
-        public virtual DbSet<Inscription> Inscriptions { get; set; }
-        public virtual DbSet<Personne> Personnes { get; set; }
+        public virtual DbSet<Person> Persons { get; set; }
         public virtual DbSet<Race> Races { get; set; }
+        public virtual DbSet<RaceType> RaceTypes { get; set; }
+        public virtual DbSet<POI> POIs { get; set; }
 
         public BaseContext()
             : base("BaseContext")

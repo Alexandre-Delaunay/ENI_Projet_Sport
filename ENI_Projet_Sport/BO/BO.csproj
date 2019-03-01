@@ -57,22 +57,26 @@
     <Compile Include="Base\IServiceBase.cs" />
     <Compile Include="Base\IServiceLocator.cs" />
     <Compile Include="Base\ServiceLocator.cs" />
-    <Compile Include="Models\ApplicationUser.cs" />
-    <Compile Include="Models\Category.cs" />
-    <Compile Include="Models\DisplayConfiguration.cs" />
-    <Compile Include="Models\Inscription.cs" />
-    <Compile Include="Models\Personne.cs" />
+    <Compile Include="Models\CategoryPOI.cs" />
+    <Compile Include="Models\POI.cs" />
     <Compile Include="Models\Race.cs" />
+    <Compile Include="Models\DisplayConfiguration.cs" />
+    <Compile Include="Models\Person.cs" />
+    <Compile Include="Models\RaceType.cs" />
     <Compile Include="Models\UnitDistance.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\IServiceCategory.cs" />
-    <Compile Include="Services\IServiceInscription.cs" />
-    <Compile Include="Services\IServicePersonne.cs" />
+    <Compile Include="Services\IServiceCategoryPOI.cs" />
+    <Compile Include="Services\IServiceDisplayConfiguration.cs" />
+    <Compile Include="Services\IServicePerson.cs" />
+    <Compile Include="Services\IServicePOI.cs" />
     <Compile Include="Services\IServiceRace.cs" />
+    <Compile Include="Services\IServiceRaceType.cs" />
     <Compile Include="Services\ServiceCategory.cs" />
-    <Compile Include="Services\ServiceInscription.cs" />
-    <Compile Include="Services\ServicePersonne.cs" />
+    <Compile Include="Services\ServiceDisplayConfiguration.cs" />
+    <Compile Include="Services\ServicePerson.cs" />
+    <Compile Include="Services\ServicePOI.cs" />
     <Compile Include="Services\ServiceRace.cs" />
+    <Compile Include="Services\ServiceRaceType.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
