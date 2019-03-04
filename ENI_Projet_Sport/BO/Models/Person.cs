@@ -23,6 +23,11 @@ namespace BO.Models
 
         public virtual DisplayConfiguration DisplayConfiguration { get; set; }
 
+        public virtual List<Race> Races { get; set; }
+
+        // user ID from AspNetUser table.
+        public string OwnerID { get; set; }
+
         public Person()
         {
             Initialize();
