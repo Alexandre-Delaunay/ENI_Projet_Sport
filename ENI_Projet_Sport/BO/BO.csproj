@@ -92,21 +92,13 @@
     <Compile Include="Base\IServiceBase.cs" />
     <Compile Include="Base\IServiceLocator.cs" />
     <Compile Include="Base\ServiceLocator.cs" />
-    <Compile Include="Migrations\201903011326363_InitDB.cs" />
-    <Compile Include="Migrations\201903011326363_InitDB.Designer.cs">
-      <DependentUpon>201903011326363_InitDB.cs</DependentUpon>
+    <Compile Include="Migrations\201903041113397_Update01.cs" />
+    <Compile Include="Migrations\201903041113397_Update01.Designer.cs">
+      <DependentUpon>201903041113397_Update01.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201903011427077_AddIDUser.cs" />
-    <Compile Include="Migrations\201903011427077_AddIDUser.Designer.cs">
-      <DependentUpon>201903011427077_AddIDUser.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201903011432060_AddIDUser02.cs" />
-    <Compile Include="Migrations\201903011432060_AddIDUser02.Designer.cs">
-      <DependentUpon>201903011432060_AddIDUser02.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201903011501337_AddIDUser03.cs" />
-    <Compile Include="Migrations\201903011501337_AddIDUser03.Designer.cs">
-      <DependentUpon>201903011501337_AddIDUser03.cs</DependentUpon>
+    <Compile Include="Migrations\201903041315409_Update02.cs" />
+    <Compile Include="Migrations\201903041315409_Update02.Designer.cs">
+      <DependentUpon>201903041315409_Update02.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CategoryPOI.cs" />
@@ -135,17 +127,11 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201903011326363_InitDB.resx">
-      <DependentUpon>201903011326363_InitDB.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201903041113397_Update01.resx">
+      <DependentUpon>201903041113397_Update01.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201903011427077_AddIDUser.resx">
-      <DependentUpon>201903011427077_AddIDUser.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201903011432060_AddIDUser02.resx">
-      <DependentUpon>201903011432060_AddIDUser02.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201903011501337_AddIDUser03.resx">
-      <DependentUpon>201903011501337_AddIDUser03.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201903041315409_Update02.resx">
+      <DependentUpon>201903041315409_Update02.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
