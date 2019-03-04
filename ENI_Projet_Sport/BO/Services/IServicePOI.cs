@@ -1,4 +1,5 @@
-﻿using BO.Models;
+﻿using BO.Base;
+using BO.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BO.Services
 {
-    public interface IServicePOI
+    public interface IServicePOI: IServiceBase
     {
         bool Add(POI poi);
         bool Delete(POI poi);
