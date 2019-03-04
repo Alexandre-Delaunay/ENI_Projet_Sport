@@ -3,6 +3,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using BO.Models;
 
 namespace ENI_Projet_Sport.Models
 {
@@ -20,8 +21,15 @@ namespace ENI_Projet_Sport.Models
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
+        public virtual DbSet<CategoryPOI> CategoriesPOI { get; set; }
+        public virtual DbSet<DisplayConfiguration> DisplayConfigurations { get; set; }
+        public virtual DbSet<Person> Persons { get; set; }
+        public virtual DbSet<Race> Races { get; set; }
+        public virtual DbSet<RaceType> RaceTypes { get; set; }
+        public virtual DbSet<POI> POIs { get; set; }
+
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base("ApplicationContext", throwIfV1Schema: false)
         {
         }
 
@@ -30,6 +38,10 @@ namespace ENI_Projet_Sport.Models
             return new ApplicationDbContext();
         }
 
-        public System.Data.Entity.DbSet<BO.Models.RaceType> RaceTypes { get; set; }
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+        }
     }
 }
