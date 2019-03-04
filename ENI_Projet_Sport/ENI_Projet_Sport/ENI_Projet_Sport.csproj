@@ -303,6 +303,11 @@
     <Content Include="Views\RaceTypes\Delete.cshtml" />
     <Content Include="Views\RaceTypes\Edit.cshtml" />
     <Content Include="Views\RaceTypes\Index.cshtml" />
+    <Content Include="Views\Person\Create.cshtml" />
+    <Content Include="Views\Person\Delete.cshtml" />
+    <Content Include="Views\Person\Details.cshtml" />
+    <Content Include="Views\Person\Edit.cshtml" />
+    <Content Include="Views\Person\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -360,10 +365,3 @@
     <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
   </Target>
 </Project>
-    <Content Include="Views\RaceTypes\Index.cshtml" />
-    <Content Include="Views\RaceTypes\Index.cshtml" />
-    <Content Include="Views\Person\Create.cshtml" />
-    <Content Include="Views\Person\Delete.cshtml" />
-    <Content Include="Views\Person\Details.cshtml" />
-    <Content Include="Views\Person\Edit.cshtml" />
-    <Content Include="Views\Person\Index.cshtml" />
