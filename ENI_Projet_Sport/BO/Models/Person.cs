@@ -20,7 +20,7 @@ namespace BO.Models
         [DataType(DataType.PhoneNumber)]
         public virtual string PhoneNumber { get; set; }
 
-        public virtual DateTime BirthDate { get; set; }
+        public virtual DateTime? BirthDate { get; set; }
 
         public virtual ApplicationUser User { get; set; }
 
