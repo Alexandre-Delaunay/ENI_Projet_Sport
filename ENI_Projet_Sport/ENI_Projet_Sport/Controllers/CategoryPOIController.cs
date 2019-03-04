@@ -16,12 +16,13 @@ namespace ENI_Projet_Sport.Controllers
 {
     public class CategoryPOIController : Controller
     {
-        private ServiceCategoryPOI serviceCategoryPOI = new ServiceCategoryPOI();
+        private static ServiceLocator _serviceLocator = ServiceLocator.Instance;
+        private static IServiceCategoryPOI _serviceCategoryPOI = _serviceLocator.GetService<IServiceCategoryPOI>();
 
         // GET: CategoryPOI
         public ActionResult Index()
         {
-            return View(serviceCategoryPOI.GetAll().Select(c => c.Map<CategoryPOIViewModel>()).ToList());
+            return View(_serviceCategoryPOI.GetAll().Select(c => c.Map<CategoryPOIViewModel>()).ToList());
         }
 
         // GET: CategoryPOI/Create
@@ -40,8 +41,8 @@ namespace ENI_Projet_Sport.Controllers
             if (ModelState.IsValid)
             {
                 categoryPOIVM.DateMAJ = DateTime.Now;
-                serviceCategoryPOI.Add(categoryPOIVM.Map<CategoryPOI>());
-                serviceCategoryPOI.Commit();
+                _serviceCategoryPOI.Add(categoryPOIVM.Map<CategoryPOI>());
+                _serviceCategoryPOI.Commit();
                 return RedirectToAction("Index");
             }
 
@@ -55,7 +56,7 @@ namespace ENI_Projet_Sport.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CategoryPOI categoryPOI = serviceCategoryPOI.GetById(Convert.ToInt32(id));
+            CategoryPOI categoryPOI = _serviceCategoryPOI.GetById(Convert.ToInt32(id));
             if (categoryPOI == null)
             {
                 return HttpNotFound();
@@ -73,8 +74,8 @@ namespace ENI_Projet_Sport.Controllers
             if (ModelState.IsValid)
             {
                 categoryPOIVM.DateMAJ = DateTime.Now;
-                serviceCategoryPOI.Update(categoryPOIVM.Map<CategoryPOI>());
-                serviceCategoryPOI.Commit();
+                _serviceCategoryPOI.Update(categoryPOIVM.Map<CategoryPOI>());
+                _serviceCategoryPOI.Commit();
                 return RedirectToAction("Index");
             }
             return View(categoryPOIVM);
@@ -87,7 +88,7 @@ namespace ENI_Projet_Sport.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CategoryPOI categoryPOI = serviceCategoryPOI.GetById(Convert.ToInt32(id));
+            CategoryPOI categoryPOI = _serviceCategoryPOI.GetById(Convert.ToInt32(id));
             if (categoryPOI == null)
             {
                 return HttpNotFound();
@@ -100,9 +101,9 @@ namespace ENI_Projet_Sport.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            CategoryPOI categoryPOI = serviceCategoryPOI.GetById(id);
-            serviceCategoryPOI.Delete(categoryPOI);
-            serviceCategoryPOI.Commit();
+            CategoryPOI categoryPOI = _serviceCategoryPOI.GetById(id);
+            _serviceCategoryPOI.Delete(categoryPOI);
+            _serviceCategoryPOI.Commit();
             return RedirectToAction("Index");
         }
 

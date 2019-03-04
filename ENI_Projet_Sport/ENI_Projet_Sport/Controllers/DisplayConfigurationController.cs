@@ -16,7 +16,8 @@ namespace ENI_Projet_Sport.Controllers
 {
     public class DisplayConfigurationController : Controller
     {
-        private ServiceDisplayConfiguration serviceDisplayConfiguration = new ServiceDisplayConfiguration();
+        private static ServiceLocator _serviceLocator = ServiceLocator.Instance;
+        private static IServiceDisplayConfiguration _serviceDisplayConfiguration = _serviceLocator.GetService<IServiceDisplayConfiguration>();
 
         // GET: DisplayConfiguration/Edit/5
         public ActionResult Edit(int? id)
@@ -25,7 +26,7 @@ namespace ENI_Projet_Sport.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            DisplayConfiguration displayConfiguration = serviceDisplayConfiguration.GetById(Convert.ToInt32(id));
+            DisplayConfiguration displayConfiguration = _serviceDisplayConfiguration.GetById(Convert.ToInt32(id));
             if (displayConfiguration == null)
             {
                 return HttpNotFound();
@@ -43,8 +44,8 @@ namespace ENI_Projet_Sport.Controllers
             if (ModelState.IsValid)
             {
                 displayConfigurationVM.DateMAJ = DateTime.Now;
-                serviceDisplayConfiguration.Update(displayConfigurationVM.Map<DisplayConfiguration>());
-                serviceDisplayConfiguration.Commit();
+                _serviceDisplayConfiguration.Update(displayConfigurationVM.Map<DisplayConfiguration>());
+                _serviceDisplayConfiguration.Commit();
                 return RedirectToAction("Index");
             }
             return View(displayConfigurationVM);
