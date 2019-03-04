@@ -57,6 +57,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Helpers\MockHelper.cs" />
     <Compile Include="MapperConfigTest.cs" />
     <Compile Include="ServiceCategoryPOITest.cs" />
     <Compile Include="ServiceDisplayConfigurationTest.cs" />
