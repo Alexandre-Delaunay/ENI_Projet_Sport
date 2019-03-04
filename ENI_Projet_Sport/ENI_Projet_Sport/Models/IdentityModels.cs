@@ -29,5 +29,7 @@ namespace ENI_Projet_Sport.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<BO.Models.RaceType> RaceTypes { get; set; }
     }
 }

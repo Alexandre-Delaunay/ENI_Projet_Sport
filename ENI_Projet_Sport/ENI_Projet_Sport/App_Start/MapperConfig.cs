@@ -24,7 +24,7 @@ namespace ENI_Projet_Sport.App_Start
                     {
                         vm.DisplayConfiguration = poco.DisplayConfiguration.Map<DisplayConfigurationViewModel>();
                     });
-                config.CreateMap<RaceType, RaceTypeViewModel>();
+                config.CreateMap<RaceTypeViewModel, RaceTypeViewModel>();
                 config.CreateMap<DisplayConfiguration, DisplayConfigurationViewModel>();
                 config.CreateMap<POI, POIViewModel>();
                 config.CreateMap<CategoryPOI, CategoryPOIViewModel>();
@@ -41,7 +41,7 @@ namespace ENI_Projet_Sport.App_Start
                     {
                         poco.DisplayConfiguration = vm.DisplayConfiguration.Map<DisplayConfiguration>();
                     });
-                config.CreateMap<RaceTypeViewModel, RaceType>();
+                config.CreateMap<RaceTypeViewModel, RaceTypeViewModel>();
                 config.CreateMap<DisplayConfigurationViewModel, DisplayConfiguration>();
                 config.CreateMap<POIViewModel, POI>();
                 config.CreateMap<CategoryPOIViewModel, CategoryPOI>();

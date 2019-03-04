@@ -10,7 +10,7 @@ namespace BO.Models
 {
     public class RaceType : BaseOV
     {
-        [MaxLength(50)]
+        [Required, MaxLength(50)]
         public virtual string Name { get; set; }
     }
 }
