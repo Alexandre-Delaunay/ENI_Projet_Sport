@@ -1,5 +1,6 @@
 ﻿using BO.Base;
 using BO.Services;
+using ENI_Projet_Sport.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -20,6 +21,8 @@ namespace BO.Models
         public virtual string PhoneNumber { get; set; }
 
         public virtual DateTime BirthDate { get; set; }
+
+        public virtual ApplicationUser User { get; set; }
 
         public Person()
         {

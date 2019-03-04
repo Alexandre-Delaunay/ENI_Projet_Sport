@@ -9,12 +9,19 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using ENI_Projet_Sport.Models;
+using BO.Models;
+using BO.Base;
+using BO.Services;
 
 namespace ENI_Projet_Sport.Controllers
 {
     [Authorize]
     public class AccountController : Controller
     {
+        private static ServiceLocator _serviceLocator = ServiceLocator.Instance;
+        private static IServicePerson _servicePerson = _serviceLocator.GetService<IServicePerson>();
+        private static IServiceDisplayConfiguration _serviceDisplayConfiguration = _serviceLocator.GetService<IServiceDisplayConfiguration>();
+
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
@@ -156,12 +163,29 @@ namespace ENI_Projet_Sport.Controllers
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+
                     // Pour plus d'informations sur l'activation de la confirmation du compte et la réinitialisation du mot de passe, consultez http://go.microsoft.com/fwlink/?LinkID=320771
                     // Envoyer un message électronique avec ce lien
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirmez votre compte", "Confirmez votre compte en cliquant <a href=\"" + callbackUrl + "\">ici</a>");
+                    var person = new Person
+                    {
+                        DateMAJ = DateTime.Now,
+                        User = user
+                    };
+                    _servicePerson.Add(person);
+                    _servicePerson.Commit();
+
+                    var displayConfiguration = new DisplayConfiguration
+                    {
+                        DateMAJ = DateTime.Now,
+                        TypeUnite = TypeUnit.KmPerHour,
+                        Person = person
+                    };
+                    _serviceDisplayConfiguration.Add(displayConfiguration);
+                    _serviceDisplayConfiguration.Commit();
+
 
                     return RedirectToAction("Index", "Home");
                 }

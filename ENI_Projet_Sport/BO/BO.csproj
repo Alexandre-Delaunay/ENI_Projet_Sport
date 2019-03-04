@@ -100,6 +100,10 @@
     <Compile Include="Migrations\201903041315409_Update02.Designer.cs">
       <DependentUpon>201903041315409_Update02.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201903041409011_LinkPersonToUser.cs" />
+    <Compile Include="Migrations\201903041409011_LinkPersonToUser.Designer.cs">
+      <DependentUpon>201903041409011_LinkPersonToUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CategoryPOI.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -132,6 +136,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201903041315409_Update02.resx">
       <DependentUpon>201903041315409_Update02.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903041409011_LinkPersonToUser.resx">
+      <DependentUpon>201903041409011_LinkPersonToUser.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
