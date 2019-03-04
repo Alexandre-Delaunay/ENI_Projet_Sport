@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace ENI_Projet_Sport.Controllers
 {
+    [Authorize(Roles ="admin")]
     public class HomeController : Controller
     {
         public ActionResult Index()
