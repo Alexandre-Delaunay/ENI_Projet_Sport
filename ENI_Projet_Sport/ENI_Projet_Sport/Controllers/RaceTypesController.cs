@@ -11,17 +11,19 @@ using ENI_Projet_Sport.Models;
 using BO.Services;
 using ENI_Projet_Sport.Extensions;
 using ENI_Projet_Sport.ViewModels;
+using BO.Base;
 
 namespace ENI_Projet_Sport.Controllers
 {
     public class RaceTypesController : Controller
     {
-        private ServiceRaceType _serviceRaceType = new ServiceRaceType();
+        private static ServiceLocator _serviceLocator = ServiceLocator.Instance;
+        private static IServiceRaceType _serviceRaceType = _serviceLocator.GetService<IServiceRaceType>();
 
         // GET: RaceTypes
         public ActionResult Index()
         {
-            var getAll = this._serviceRaceType.GetAll().ToList();
+            var getAll = _serviceRaceType.GetAll().ToList();
             return View(getAll.Select(e => e.Map<ViewModels.RaceTypeViewModel>()).ToList());
         }
 
@@ -39,8 +41,8 @@ namespace ENI_Projet_Sport.Controllers
             if (ModelState.IsValid)
             {
                 raceTypeVM.DateMAJ = DateTime.Now;
-                this._serviceRaceType.Add(raceTypeVM.Map<RaceType>());
-                this._serviceRaceType.Commit();
+                _serviceRaceType.Add(raceTypeVM.Map<RaceType>());
+                _serviceRaceType.Commit();
                 return RedirectToAction("Index");
             }
 
@@ -54,7 +56,7 @@ namespace ENI_Projet_Sport.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            RaceType raceType = this._serviceRaceType.GetById(id ?? 1);
+            RaceType raceType = _serviceRaceType.GetById(id ?? 1);
             if (raceType == null)
             {
                 return HttpNotFound();
@@ -72,8 +74,8 @@ namespace ENI_Projet_Sport.Controllers
             if (ModelState.IsValid)
             {
                 raceTypeVM.DateMAJ = DateTime.Now;
-                this._serviceRaceType.Update(raceTypeVM.Map<RaceType>());
-                this._serviceRaceType.Commit();
+                _serviceRaceType.Update(raceTypeVM.Map<RaceType>());
+                _serviceRaceType.Commit();
                 return RedirectToAction("Index");
             }
             return View(raceTypeVM);
@@ -86,7 +88,7 @@ namespace ENI_Projet_Sport.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            RaceType raceType = this._serviceRaceType.GetById(id ?? 1);
+            RaceType raceType = _serviceRaceType.GetById(id ?? 1);
             if (raceType == null)
             {
                 return HttpNotFound();
@@ -99,9 +101,10 @@ namespace ENI_Projet_Sport.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            RaceType raceType = this._serviceRaceType.GetById(id);
-            this._serviceRaceType.Delete(raceType);
-            this._serviceRaceType.Commit();
+            RaceType raceType = _serviceRaceType.GetById(id);
+            _serviceRaceType.Delete(raceType);
+            _serviceRaceType.Commit();
+
             return RedirectToAction("Index");
         }
 
