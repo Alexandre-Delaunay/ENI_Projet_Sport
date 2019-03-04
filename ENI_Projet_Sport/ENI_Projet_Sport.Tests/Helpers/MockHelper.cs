@@ -101,8 +101,7 @@ namespace ENI_Projet_Sport.Tests.Helpers
                 LastName = "Rachid",
                 DateMAJ = DateTime.Now,
                 PhoneNumber = "0625145241",
-                BirthDate = new DateTime(1980, 5, 20),
-                DisplayConfiguration = Get_DisplayConfigurations()[0],
+                BirthDate = new DateTime(1980, 5, 20)
             };
 
             var person2 = new Person()
@@ -112,8 +111,7 @@ namespace ENI_Projet_Sport.Tests.Helpers
                 LastName = "Montana",
                 DateMAJ = DateTime.Now,
                 PhoneNumber = "0625535241",
-                BirthDate = new DateTime(1995, 10, 15),
-                DisplayConfiguration = Get_DisplayConfigurations()[1],
+                BirthDate = new DateTime(1995, 10, 15)
             };
 
             lst.Add(person1);
