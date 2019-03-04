@@ -21,8 +21,6 @@ namespace BO.Models
 
         public virtual DateTime BirthDate { get; set; }
 
-        public virtual DisplayConfiguration DisplayConfiguration { get; set; }
-
         public Person()
         {
             Initialize();

@@ -14,8 +14,6 @@ namespace ENI_Projet_Sport.ViewModels
 
         public virtual DateTime BirthDate { get; set; }
 
-        public virtual DisplayConfigurationViewModel DisplayConfiguration { get; set; }
-
         public PersonViewModel()
         {
             Initialize();
