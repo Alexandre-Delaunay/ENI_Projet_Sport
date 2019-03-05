@@ -77,9 +77,9 @@ namespace BO.Base
                 _context.SaveChanges();
                 success = true;
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                throw;
+                throw e;
             }
 
             return success;
