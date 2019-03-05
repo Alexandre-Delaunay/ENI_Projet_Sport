@@ -29,7 +29,7 @@ namespace ENI_Projet_Sport.Models
         public virtual DbSet<POI> POIs { get; set; }
 
         public ApplicationDbContext()
-            : base("BaseContext", throwIfV1Schema: false)
+            : base("ApplicationDbContext", throwIfV1Schema: false)
         {
 
         }
