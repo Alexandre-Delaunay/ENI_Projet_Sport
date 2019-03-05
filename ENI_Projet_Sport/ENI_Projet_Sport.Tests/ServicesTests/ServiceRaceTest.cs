@@ -6,7 +6,7 @@ using BO.Base;
 using BO.Services;
 using ENI_Projet_Sport.Tests.Helpers;
 
-namespace ENI_Projet_Sport.Tests
+namespace ENI_Projet_Sport.ServicesTests.Tests
 {
     [TestClass]
     public class ServiceRaceTest
