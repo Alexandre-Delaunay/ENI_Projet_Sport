@@ -211,6 +211,8 @@
     <Compile Include="Controllers\DisplayConfigurationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\POIsController.cs" />
+    <Compile Include="Controllers\RacesController.cs" />
     <Compile Include="Controllers\RaceTypesController.cs" />
     <Compile Include="Extensions\MapperExtension.cs" />
     <Compile Include="Global.asax.cs">
@@ -234,6 +236,9 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Control.Geocoder.css" />
+    <Content Include="Content\leaflet-routing-machine.css" />
+    <Content Include="Content\leaflet.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -246,6 +251,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\Control.Geocoder.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -253,6 +259,8 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\leaflet-routing-machine.js" />
+    <Content Include="Scripts\leaflet.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
@@ -302,6 +310,16 @@
     <Content Include="Views\RaceTypes\Delete.cshtml" />
     <Content Include="Views\RaceTypes\Edit.cshtml" />
     <Content Include="Views\RaceTypes\Index.cshtml" />
+    <Content Include="Views\Races\Create.cshtml" />
+    <Content Include="Views\Races\Delete.cshtml" />
+    <Content Include="Views\Races\Details.cshtml" />
+    <Content Include="Views\Races\Edit.cshtml" />
+    <Content Include="Views\Races\Index.cshtml" />
+    <Content Include="Views\POIs\Create.cshtml" />
+    <Content Include="Views\POIs\Delete.cshtml" />
+    <Content Include="Views\POIs\Details.cshtml" />
+    <Content Include="Views\POIs\Edit.cshtml" />
+    <Content Include="Views\POIs\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -92,17 +92,9 @@
     <Compile Include="Base\IServiceBase.cs" />
     <Compile Include="Base\IServiceLocator.cs" />
     <Compile Include="Base\ServiceLocator.cs" />
-    <Compile Include="Migrations\201903041113397_Update01.cs" />
-    <Compile Include="Migrations\201903041113397_Update01.Designer.cs">
-      <DependentUpon>201903041113397_Update01.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201903041315409_Update02.cs" />
-    <Compile Include="Migrations\201903041315409_Update02.Designer.cs">
-      <DependentUpon>201903041315409_Update02.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201903041409011_LinkPersonToUser.cs" />
-    <Compile Include="Migrations\201903041409011_LinkPersonToUser.Designer.cs">
-      <DependentUpon>201903041409011_LinkPersonToUser.cs</DependentUpon>
+    <Compile Include="Migrations\201903041503367_InitDb.cs" />
+    <Compile Include="Migrations\201903041503367_InitDb.Designer.cs">
+      <DependentUpon>201903041503367_InitDb.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CategoryPOI.cs" />
@@ -131,14 +123,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201903041113397_Update01.resx">
-      <DependentUpon>201903041113397_Update01.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201903041315409_Update02.resx">
-      <DependentUpon>201903041315409_Update02.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201903041409011_LinkPersonToUser.resx">
-      <DependentUpon>201903041409011_LinkPersonToUser.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201903041503367_InitDb.resx">
+      <DependentUpon>201903041503367_InitDb.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
