@@ -18,10 +18,6 @@ namespace ENI_Projet_Sport.Controllers
     [Authorize]
     public class AccountController : Controller
     {
-        //private static ServiceLocator _serviceLocator = ServiceLocator.Instance;
-        //private static IServicePerson _servicePerson = _serviceLocator.GetService<IServicePerson>();
-        //private static IServiceDisplayConfiguration _serviceDisplayConfiguration = _serviceLocator.GetService<IServiceDisplayConfiguration>();
-
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 

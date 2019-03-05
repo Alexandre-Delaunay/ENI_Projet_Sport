@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Linq;
-using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using BO.Base;
@@ -34,8 +29,8 @@ namespace ENI_Projet_Sport.Controllers
         private static ServiceLocator _serviceLocator = ServiceLocator.Instance;
         private static IServiceDisplayConfiguration _serviceDisplayConfiguration = _serviceLocator.GetService<IServiceDisplayConfiguration>();
 
-        // GET: DisplayConfiguration/Edit/5
-        public ActionResult Edit(int? id)
+        // GET: DisplayConfiguration/Edit
+        public ActionResult Edit()
         {
             var user = UserManager.FindByIdAsync(User.Identity.GetUserId());
             DisplayConfiguration displayConfiguration = _serviceDisplayConfiguration.GetById(user.Result.displayConfiguration.Id);
@@ -69,10 +64,6 @@ namespace ENI_Projet_Sport.Controllers
 
         protected override void Dispose(bool disposing)
         {
-            /*if (disposing)
-            {
-                db.Dispose();
-            }*/
             base.Dispose(disposing);
         }
     }

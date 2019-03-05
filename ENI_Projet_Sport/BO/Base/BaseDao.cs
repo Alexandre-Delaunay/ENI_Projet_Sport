@@ -1,11 +1,7 @@
-﻿using BO.Models;
-using ENI_Projet_Sport.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BO.Base
 {
@@ -61,7 +57,6 @@ namespace BO.Base
 
             if (entity != null)
             {               
-                //ApplicationDbContextSingleton.ContextInstance.Entry(entity).State = EntityState.Added;
                 ApplicationDbContextSingleton.ContextInstance.Entry(entity).State = EntityState.Modified;
                 success = true;
             }
