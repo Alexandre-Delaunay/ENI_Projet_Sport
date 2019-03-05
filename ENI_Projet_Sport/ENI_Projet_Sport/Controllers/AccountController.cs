@@ -18,9 +18,9 @@ namespace ENI_Projet_Sport.Controllers
     [Authorize]
     public class AccountController : Controller
     {
-        private static ServiceLocator _serviceLocator = ServiceLocator.Instance;
-        private static IServicePerson _servicePerson = _serviceLocator.GetService<IServicePerson>();
-        private static IServiceDisplayConfiguration _serviceDisplayConfiguration = _serviceLocator.GetService<IServiceDisplayConfiguration>();
+        //private static ServiceLocator _serviceLocator = ServiceLocator.Instance;
+        //private static IServicePerson _servicePerson = _serviceLocator.GetService<IServicePerson>();
+        //private static IServiceDisplayConfiguration _serviceDisplayConfiguration = _serviceLocator.GetService<IServiceDisplayConfiguration>();
 
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
@@ -158,7 +158,18 @@ namespace ENI_Projet_Sport.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser {
+                    UserName = model.Email,
+                    Email = model.Email,
+                    person = new Person(){
+                        DateMAJ = DateTime.Now
+                    },
+                    displayConfiguration = new DisplayConfiguration
+                    {
+                        DateMAJ = DateTime.Now,
+                        TypeUnite = TypeUnit.KmPerHour,
+                    }
+                };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -169,23 +180,6 @@ namespace ENI_Projet_Sport.Controllers
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirmez votre compte", "Confirmez votre compte en cliquant <a href=\"" + callbackUrl + "\">ici</a>");
-                    var person = new Person
-                    {
-                        DateMAJ = DateTime.Now,
-                        User = user
-                    };
-                    _servicePerson.Add(person);
-                    _servicePerson.Commit();
-
-                    var displayConfiguration = new DisplayConfiguration
-                    {
-                        DateMAJ = DateTime.Now,
-                        TypeUnite = TypeUnit.KmPerHour,
-                        Person = person
-                    };
-                    _serviceDisplayConfiguration.Add(displayConfiguration);
-                    _serviceDisplayConfiguration.Commit();
-
 
                     return RedirectToAction("Index", "Home");
                 }

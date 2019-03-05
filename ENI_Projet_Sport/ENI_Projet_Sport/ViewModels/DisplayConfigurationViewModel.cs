@@ -14,6 +14,6 @@ namespace ENI_Projet_Sport.ViewModels
         [Required]
         public virtual TypeUnit TypeUnite { get; set; }
 
-        public virtual PersonViewModel Person { get; set; }
+        //public virtual PersonViewModel Person { get; set; }
     }
 }

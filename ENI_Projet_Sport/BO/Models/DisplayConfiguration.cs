@@ -10,7 +10,7 @@ namespace BO.Models
     public class DisplayConfiguration : BaseOV
     {
         public TypeUnit TypeUnite { get; set; }
-        public virtual Person Person { get; set; }
+        //public virtual Person Person { get; set; }
     }
     public enum TypeUnit
     {

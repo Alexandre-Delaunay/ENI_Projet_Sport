@@ -22,7 +22,7 @@ namespace BO.Models
 
         public virtual DateTime? BirthDate { get; set; }
 
-        public virtual ApplicationUser User { get; set; }
+        public virtual List<Race> Races { get; set; }
 
         public Person()
         {

@@ -11,22 +11,34 @@ using BO.Models;
 using BO.Services;
 using ENI_Projet_Sport.Extensions;
 using ENI_Projet_Sport.ViewModels;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.AspNet.Identity;
 
 namespace ENI_Projet_Sport.Controllers
 {
+    [Authorize]
     public class DisplayConfigurationController : Controller
     {
+        private ApplicationUserManager _userManager;
+        public ApplicationUserManager UserManager
+        {
+            get
+            {
+                return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            }
+            private set
+            {
+                _userManager = value;
+            }
+        }
         private static ServiceLocator _serviceLocator = ServiceLocator.Instance;
         private static IServiceDisplayConfiguration _serviceDisplayConfiguration = _serviceLocator.GetService<IServiceDisplayConfiguration>();
 
         // GET: DisplayConfiguration/Edit/5
         public ActionResult Edit(int? id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            DisplayConfiguration displayConfiguration = _serviceDisplayConfiguration.GetById(Convert.ToInt32(id));
+            var user = UserManager.FindByIdAsync(User.Identity.GetUserId());
+            DisplayConfiguration displayConfiguration = _serviceDisplayConfiguration.GetById(user.Result.displayConfiguration.Id);
             if (displayConfiguration == null)
             {
                 return HttpNotFound();
@@ -43,10 +55,14 @@ namespace ENI_Projet_Sport.Controllers
         {
             if (ModelState.IsValid)
             {
-                displayConfigurationVM.DateMAJ = DateTime.Now;
-                _serviceDisplayConfiguration.Update(displayConfigurationVM.Map<DisplayConfiguration>());
+                var displayConfig = _serviceDisplayConfiguration.GetById(displayConfigurationVM.Id);
+                displayConfig.DateMAJ = DateTime.Now;
+                displayConfig.TypeUnite = displayConfigurationVM.TypeUnite;
+
+                _serviceDisplayConfiguration.Update(displayConfig);
                 _serviceDisplayConfiguration.Commit();
-                return RedirectToAction("Index");
+
+                return RedirectToAction("..");
             }
             return View(displayConfigurationVM);
         }
