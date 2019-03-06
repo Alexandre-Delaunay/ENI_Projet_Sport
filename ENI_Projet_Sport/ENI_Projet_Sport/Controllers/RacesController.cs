@@ -60,6 +60,11 @@ namespace ENI_Projet_Sport.Controllers
                 raceVM.DateMAJ = DateTime.Now;
                 var race = raceVM.Map<Race>();
 
+                race.POIs.ForEach(p =>
+                {                                        
+                    p.DateMAJ = DateTime.Now;
+                });
+
                 _serviceRace.Add(race);
                 _serviceRace.Commit();
 

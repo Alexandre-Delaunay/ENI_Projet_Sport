@@ -114,7 +114,7 @@
             POIs.push({
                 Latitude: poi.latLng.lat.toString().replace('.', ','),
                 Longitude: poi.latLng.lng.toString().replace('.', ','),
-                CategoryPOI: { ID: 1, Name: "Départ", DateMAJ : '2010-10-10'}
+                CategoryPOI: { ID: 0, Name: "Départ", DateMAJ : '2010-10-10'}
             })
         });
         console.log(POIs)
@@ -125,7 +125,7 @@
             City: $("#City").val(),
             ZipCode: $("#ZipCode").val(),
             Price: $("#Price").val(),
-            Description: $("#Description").val(),
+            Description: $("#Description").val(),            
             POIs: POIs
         }
         
