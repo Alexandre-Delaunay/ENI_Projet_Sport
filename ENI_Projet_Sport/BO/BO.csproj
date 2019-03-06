@@ -85,6 +85,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Base\ApplicationDbContextSingleton.cs" />
     <Compile Include="Base\BaseDao.cs" />
     <Compile Include="Base\BaseOV.cs" />
     <Compile Include="Base\BaseViewModel.cs" />
@@ -92,9 +93,9 @@
     <Compile Include="Base\IServiceBase.cs" />
     <Compile Include="Base\IServiceLocator.cs" />
     <Compile Include="Base\ServiceLocator.cs" />
-    <Compile Include="Migrations\201903041503367_InitDb.cs" />
-    <Compile Include="Migrations\201903041503367_InitDb.Designer.cs">
-      <DependentUpon>201903041503367_InitDb.cs</DependentUpon>
+    <Compile Include="Migrations\201903051310370_Update-DisplayConfiguration-Person-AspNetUser.cs" />
+    <Compile Include="Migrations\201903051310370_Update-DisplayConfiguration-Person-AspNetUser.Designer.cs">
+      <DependentUpon>201903051310370_Update-DisplayConfiguration-Person-AspNetUser.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CategoryPOI.cs" />
@@ -119,12 +120,14 @@
     <Compile Include="Services\ServiceRaceType.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201903041503367_InitDb.resx">
-      <DependentUpon>201903041503367_InitDb.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201903051310370_Update-DisplayConfiguration-Person-AspNetUser.resx">
+      <DependentUpon>201903051310370_Update-DisplayConfiguration-Person-AspNetUser.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

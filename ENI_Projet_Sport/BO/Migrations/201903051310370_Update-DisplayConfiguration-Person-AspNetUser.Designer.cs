@@ -7,13 +7,13 @@ namespace BO.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class Update01 : IMigrationMetadata
+    public sealed partial class UpdateDisplayConfigurationPersonAspNetUser : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Update01));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(UpdateDisplayConfigurationPersonAspNetUser));
         
         string IMigrationMetadata.Id
         {
-            get { return "201903041113397_Update01"; }
+            get { return "201903051310370_Update-DisplayConfiguration-Person-AspNetUser"; }
         }
         
         string IMigrationMetadata.Source

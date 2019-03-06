@@ -1,26 +1,22 @@
-﻿using ENI_Projet_Sport.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BO.Base
 {
     public class BaseDao<T> : IBaseDao<T> where T : class
     {
-        private ApplicationDbContext _context { get; set; }
         public BaseDao()
         {
-            _context = new ApplicationDbContext();
+            
         }
         public bool Delete(T entity)
         {
             var success = false;
             if (entity != null)
             {
-                _context.Entry(entity).State = EntityState.Deleted;
+                ApplicationDbContextSingleton.ContextInstance.Entry(entity).State = EntityState.Deleted;
             }
 
             return success;
@@ -30,7 +26,7 @@ namespace BO.Base
         {
             List<T> result = null;
 
-            result = _context.Set<T>().ToList();
+            result = ApplicationDbContextSingleton.ContextInstance.Set<T>().ToList();
 
             return result;
         }
@@ -38,7 +34,7 @@ namespace BO.Base
         public T GetByID(int id)
         {
             T result = null;
-            result = _context.Set<T>().Find(id);
+            result = ApplicationDbContextSingleton.ContextInstance.Set<T>().Find(id);
 
             return result;
         }
@@ -48,7 +44,7 @@ namespace BO.Base
             var success = false;
             if (entity != null)
             {
-                _context.Set<T>().Add(entity);
+                ApplicationDbContextSingleton.ContextInstance.Set<T>().Add(entity);
                 success = true;
             }
 
@@ -60,8 +56,8 @@ namespace BO.Base
             var success = false;
 
             if (entity != null)
-            {
-                _context.Entry(entity).State = EntityState.Modified;
+            {               
+                ApplicationDbContextSingleton.ContextInstance.Entry(entity).State = EntityState.Modified;
                 success = true;
             }
 
@@ -74,12 +70,12 @@ namespace BO.Base
 
             try
             {
-                _context.SaveChanges();
+                ApplicationDbContextSingleton.ContextInstance.SaveChanges();
                 success = true;
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                throw;
+                throw e;
             }
 
             return success;
