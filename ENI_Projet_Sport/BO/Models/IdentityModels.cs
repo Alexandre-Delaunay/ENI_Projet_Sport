@@ -45,7 +45,8 @@ namespace ENI_Projet_Sport.Models
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-
+            modelBuilder.Entity<Person>().HasMany(p => p.Races).WithMany();
+            modelBuilder.Entity<Race>().HasMany(r => r.Persons).WithMany();
         }
     }
 }
