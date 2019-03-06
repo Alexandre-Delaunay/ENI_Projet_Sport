@@ -38,11 +38,7 @@ namespace ENI_Projet_Sport.App_Start
                     });
                 config.CreateMap<PersonViewModel, Person>();
                 config.CreateMap<RaceTypeViewModel, RaceType>();
-                config.CreateMap<DisplayConfigurationViewModel, DisplayConfiguration>()
-                    .AfterMap((vm, poco) =>
-                    {
-                        poco.Person = vm.Person.Map<Person>();
-                    })*/;
+                config.CreateMap<DisplayConfigurationViewModel, DisplayConfiguration>();
                 config.CreateMap<POIViewModel, POI>();
                 config.CreateMap<CategoryPOIViewModel, CategoryPOI>();
 
@@ -89,5 +85,3 @@ namespace ENI_Projet_Sport.App_Start
         }
     }
 }
-                config.CreateMap<DisplayConfigurationViewModel, DisplayConfiguration>()
-                    /*.AfterMap((vm, poco) =>
