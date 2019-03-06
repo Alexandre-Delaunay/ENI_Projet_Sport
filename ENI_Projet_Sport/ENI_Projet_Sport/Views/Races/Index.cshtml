@@ -95,22 +95,22 @@
                     var html = '<a data-id="'+id+'" class="unsubscribe_link">Unsubscribe</a>';
                     $($that).parent().html(html);
                     $('.unsubscribe_link').unbind('click').on('click', unsubscribe);
-                    /*$.alert({
+                    $.alert({
                         title: 'Inscription effectuée!',
                         content: 'Vous êtes inscrit à cette course!',
-                    });*/
+                    });
                 }
                 else {
-                    /*$.alert({
+                    $.alert({
                         title: 'Erreur!',
                         content: 'Une erreur est survenue!',
-                    });*/
+                    });
                 }
             }
         });
     }
     function unsubscribe(evt) {
-        /*$.confirm({
+        $.confirm({
             title: 'Attention!',
             content: 'Souhaitez-vous vraiment vous désinscrire de cette course ?',
             buttons: {
@@ -142,9 +142,9 @@
 
                 }
             }
-        });*/
+        });
 
-        var $that = $(evt.currentTarget);
+        /*var $that = $(evt.currentTarget);
         var id = $($that).data('id');
         $.ajax({
             type: "POST",
@@ -159,12 +159,12 @@
                     $('.register_link').unbind('click').on('click', register);
                 }
                 else {
-                    /*$.alert({
+                    $.alert({
                         title: 'Erreur!',
                         content: 'Une erreur est survenue!',
-                    });*/
+                    });
                 }
             }
-        });
+        });*/
     }
 </script>
