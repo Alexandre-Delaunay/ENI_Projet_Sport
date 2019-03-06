@@ -106,8 +106,6 @@
     }).addTo(mymap);
 
     function send_to_controller(){
-        //var waypoints = routeControl.getWaypoints();
-
         var POIs = []
 
         routeControl.getWaypoints().forEach(function(poi){
@@ -131,9 +129,17 @@
         
         $.ajax({
             type: "POST",
-            url: "../../Races/Create",
+            url: "/Races/Create",
             data: raceVM,
-            dataType: "application/json"
+            dataType: "application/json",
+            complete: function(data){
+                if(data.status == 200){
+                    document.location.href = '/Races';
+                }
+                else{
+                    alert('erreur');
+                }
+            }
         });
     }
 </script>

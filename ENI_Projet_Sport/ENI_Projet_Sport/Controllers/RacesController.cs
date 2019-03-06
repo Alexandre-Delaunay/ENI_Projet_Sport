@@ -12,6 +12,7 @@ using BO.Base;
 using BO.Services;
 using ENI_Projet_Sport.Extensions;
 using ENI_Projet_Sport.ViewModels;
+using System.Net.Http;
 
 namespace ENI_Projet_Sport.Controllers
 {
@@ -20,6 +21,7 @@ namespace ENI_Projet_Sport.Controllers
         private static ServiceLocator _serviceLocator = ServiceLocator.Instance;
         private static IServiceRace _serviceRace = _serviceLocator.GetService<IServiceRace>();
         private static IServicePOI _servicePOI = _serviceLocator.GetService<IServicePOI>();
+        private static IServiceCategoryPOI _serviceCategoryPOI = _serviceLocator.GetService<IServiceCategoryPOI>();
 
         // GET: Races
         public ActionResult Index()
@@ -53,25 +55,32 @@ namespace ENI_Projet_Sport.Controllers
 
         // POST: Races/Create
         [HttpPost]
-        public ActionResult Create(CreateEditRaceViewModel raceVM)
+        public HttpResponseMessage Create(CreateEditRaceViewModel raceVM)
         {
             if (ModelState.IsValid)
             {
                 raceVM.DateMAJ = DateTime.Now;
                 var race = raceVM.Map<Race>();
 
+                var category = _serviceCategoryPOI.GetAll().Where(c => c.Name.Equals("Checkpoint")).FirstOrDefault();
+
                 race.POIs.ForEach(p =>
                 {                                        
                     p.DateMAJ = DateTime.Now;
+                    p.CategoryPOI = category;
                 });
+
+                category = _serviceCategoryPOI.GetAll().Where(c => c.Name.Equals("Départ")).FirstOrDefault();
+                race.POIs.First().CategoryPOI = category;
+                category = _serviceCategoryPOI.GetAll().Where(c => c.Name.Equals("Arrivée")).FirstOrDefault();
+                race.POIs.Last().CategoryPOI = category;
 
                 _serviceRace.Add(race);
                 _serviceRace.Commit();
 
-                return RedirectToAction("Index");
+                return new HttpResponseMessage(HttpStatusCode.OK);
             }
-
-            return View(raceVM);
+            return new HttpResponseMessage(HttpStatusCode.InternalServerError);
         }
 
         //// GET: Races/Edit/5
