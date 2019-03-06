@@ -24,6 +24,16 @@ namespace ENI_Projet_Sport
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/leaflet").Include(
+                      "~/Scripts/leaflet.js",
+                      "~/Scripts/Control.Geocoder.js",
+                      "~/Scripts/leaflet-routing-machine.js"));
+
+            bundles.Add(new StyleBundle("~/Content/leaflet").Include(
+                      "~/Content/leaflet.css",
+                      "~/Content/Control.Geocoder.css",
+                      "~/Content/leaflet-routing-machine.css"));
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.min.css",
                       "~/Content/site.css",
