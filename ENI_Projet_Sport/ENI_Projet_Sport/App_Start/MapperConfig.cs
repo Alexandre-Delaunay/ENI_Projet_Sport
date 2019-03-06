@@ -38,21 +38,16 @@ namespace ENI_Projet_Sport.App_Start
                     });
                 config.CreateMap<PersonViewModel, Person>();
                 config.CreateMap<RaceTypeViewModel, RaceType>();
-                config.CreateMap<DisplayConfigurationViewModel, DisplayConfiguration>()
-                    /*.AfterMap((vm, poco) =>
-                    {
-                        poco.Person = vm.Person.Map<Person>();
-                    })*/;
+                config.CreateMap<DisplayConfigurationViewModel, DisplayConfiguration>();
                 config.CreateMap<POIViewModel, POI>();
                 config.CreateMap<CategoryPOIViewModel, CategoryPOI>();
 
                 // Model TO CreateEditViewModel
                 config.CreateMap<Race, CreateEditRaceViewModel>()
-                    .ForMember(vm => vm.POIsIds, o => o.Ignore())
-                    .ForMember(vm => vm.POIForSelectList, o => o.Ignore())
+                    .ForMember(vm => vm.POIs, o => o.Ignore())
                     .AfterMap((poco, vm) =>
                     {
-                        vm.POIsIds = poco.POIs.Select(p => p.Id).ToList();
+                        vm.POIs = poco.POIs.Select(p => p.Map<POIViewModel>()).ToList();
 
                         vm.InitLists();
                     });
@@ -76,7 +71,8 @@ namespace ENI_Projet_Sport.App_Start
                     .AfterMap((vm, poco) =>
                     {
                         var servicePOI = vm.ServiceLocator.GetService<IServicePOI>();
-                        poco.POIs = servicePOI.GetAll().Where(p => vm.POIsIds.Contains(p.Id)).ToList();
+                        poco.POIs = vm.POIs.Select(p => p.Map<POI>()).ToList();
+                        //poco.POIs = servicePOI.GetAll().Where(p => vm.POIs.Contains(p.Map<POIViewModel>())).ToList();
                     });
                 config.CreateMap<CreateEditPOIViewModel, POI>()
                     .AfterMap((vm, poco) =>

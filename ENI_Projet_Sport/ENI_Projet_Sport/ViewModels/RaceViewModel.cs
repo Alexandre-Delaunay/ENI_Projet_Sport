@@ -1,6 +1,8 @@
 ﻿using BO.Base;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace ENI_Projet_Sport.ViewModels
 {
@@ -8,10 +10,15 @@ namespace ENI_Projet_Sport.ViewModels
     {
         public virtual int Id { get; set; }
         public virtual DateTime DateMAJ { get; set; }
+        [Required, DisplayName("Nom")]
         public virtual string Name { get; set; }
+        [Required, DisplayName("Places")]
         public virtual int PlacesNumber { get; set; }
+        [Required, DisplayName("Ville")]
         public virtual string City { get; set; }
+        [Required, DisplayName("Code Postal")]
         public virtual string ZipCode { get; set; }
+        [Required, DisplayName("Prix")]
         public virtual float Price { get; set; }
         public virtual string Description { get; set; }
         public virtual List<POIViewModel> POIs { get; set; }
@@ -26,8 +33,8 @@ namespace ENI_Projet_Sport.ViewModels
         {
             base.Initialize();
 
-            POIs = new List<POIViewModel>();
-            Persons = new List<PersonViewModel>();
+            this.POIs = new List<POIViewModel>();
+            this.Persons = new List<PersonViewModel>();
         }
     }
 }
