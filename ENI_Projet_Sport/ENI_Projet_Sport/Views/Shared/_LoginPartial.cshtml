@@ -4,15 +4,13 @@
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
     {
     @Html.AntiForgeryToken()
-
+        
+    }
     <ul class="nav navbar-nav navbar-right">
-        <li>
-            @Html.ActionLink("Connecté : " + User.Identity.GetUserName(), "Edit", "Person", routeValues: null, htmlAttributes: new { })
-        </li>
         <li>@Html.ActionLink("Paramètres", "Edit", "DisplayConfiguration", routeValues: null, htmlAttributes: new { id = "settingsLink" })</li>
+        <li>@Html.ActionLink(User.Identity.GetUserName().Split('@').First(), "Edit", "Person", routeValues: null, htmlAttributes: new { })</li>
         <li><a href="javascript:document.getElementById('logoutForm').submit()">Se déconnecter</a></li>
     </ul>
-    }
 }
 else
 {

@@ -15,6 +15,7 @@ using BO.Base;
 
 namespace ENI_Projet_Sport.Controllers
 {
+    //[Authorize]
     public class RaceTypesController : Controller
     {
         private static ServiceLocator _serviceLocator = ServiceLocator.Instance;
