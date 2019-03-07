@@ -17,6 +17,7 @@ using Microsoft.AspNet.Identity;
 using System.Net.Http;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using ENI_Projet_Sport.Helpers;
 
 namespace ENI_Projet_Sport.Controllers
 {
@@ -49,9 +50,19 @@ namespace ENI_Projet_Sport.Controllers
             if (user.Result != null)
             {
                 List<Race> UserRaces = user.Result.person.Races;
+                var typeUnit = user.Result.displayConfiguration.TypeUnite;
 
                 getAll.ForEach(r =>
                 {
+                    if (typeUnit.Equals(TypeUnit.Miles))
+                    {
+                        r.Distance = (float)UniteHelper.MeterToMiles(r.Distance);
+                    }
+                    else
+                    {
+                        r.Distance = (float)UniteHelper.MeterToKm(r.Distance);
+                    }
+
                     if (UserRaces.Select(race => race.Id).Contains(r.Id))
                     {
                         r.isSubscribe = true;
@@ -74,7 +85,24 @@ namespace ENI_Projet_Sport.Controllers
             {
                 return HttpNotFound();
             }
-            return View(race.Map<ViewModels.RaceViewModel>());
+
+            var raceVM = race.Map<RaceViewModel>();
+
+            var user = UserManager.FindByIdAsync(User.Identity.GetUserId());
+            if (user != null)
+            {
+                var typeUnit = user.Result.displayConfiguration.TypeUnite;
+                if (typeUnit.Equals(TypeUnit.Miles))
+                {
+                    raceVM.Distance = (float)UniteHelper.MeterToMiles(raceVM.Distance);
+                }
+                else
+                {
+                    raceVM.Distance = (float)UniteHelper.MeterToKm(raceVM.Distance);
+                }
+            }
+
+            return View(raceVM);
         }
 
         // GET: Races/Create
@@ -87,25 +115,24 @@ namespace ENI_Projet_Sport.Controllers
         [HttpPost]
         public ActionResult Create(CreateEditRaceViewModel raceVM)
         {
-
-                raceVM.DateMAJ = DateTime.Now;
+            raceVM.DateMAJ = DateTime.Now;
             Race race = raceVM.Map<Race>();
 
             var category = _serviceCategoryPOI.GetAll().Where(c => c.Name.Equals("Checkpoint")).FirstOrDefault();
 
-                race.POIs.ForEach(p =>
-                {                                        
-                    p.DateMAJ = DateTime.Now;
+            race.POIs.ForEach(p =>
+            {                                        
+                p.DateMAJ = DateTime.Now;
                 p.CategoryPOI = category;
-                });
+            });
 
             category = _serviceCategoryPOI.GetAll().Where(c => c.Name.Equals("Départ")).FirstOrDefault();
             race.POIs.First().CategoryPOI = category;
             category = _serviceCategoryPOI.GetAll().Where(c => c.Name.Equals("Arrivée")).FirstOrDefault();
             race.POIs.Last().CategoryPOI = category;
 
-                _serviceRace.Add(race);
-                _serviceRace.Commit();
+            _serviceRace.Add(race);
+            _serviceRace.Commit();
             return View(raceVM);
             //return new HttpResponseMessage(HttpStatusCode.InternalServerError);
         }
@@ -132,6 +159,9 @@ namespace ENI_Projet_Sport.Controllers
             raceVM.DateMAJ = DateTime.Now;
 
             Race race_from_db = _serviceRace.GetById(raceVM.Id);
+            raceVM.POIs = race_from_db.POIs.Select(s => s.Map<POIViewModel>()).ToList();
+            raceVM.Distance = race_from_db.Distance;
+
             raceVM.Map(race_from_db);
             _serviceRace.Commit();
             return RedirectToAction("index");

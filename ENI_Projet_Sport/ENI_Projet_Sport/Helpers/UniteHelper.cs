@@ -7,14 +7,14 @@ namespace ENI_Projet_Sport.Helpers
 {
     public sealed class UniteHelper
     {
-        public static double KmPerHourToMeterPerSecond(double kmph)
+        public static double MeterToKm(double meter)
         {
-            return 0.277778 * kmph;
+            return meter * 0.001;
         }
 
-        public static double MeterPerSecondToKmPerHour(double mps)
+        public static double MeterToMiles(double meter)
         {
-            return 3.6 * mps;
+            return meter * 0.000621;
         }
     }
 }
