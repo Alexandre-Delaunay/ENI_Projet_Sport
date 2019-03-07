@@ -24,6 +24,7 @@ namespace BO.Models
 
         public virtual List<Race> Races { get; set; }
 
+        public virtual bool IsDarkTheme { get; set; }
         public Person()
         {
             Initialize();
