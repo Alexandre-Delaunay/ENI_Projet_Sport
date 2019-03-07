@@ -6,7 +6,7 @@ namespace ENI_Projet_Sport
     public class BundleConfig
     {
         // Pour plus d'informations sur le regroupement, visitez http://go.microsoft.com/fwlink/?LinkId=301862
-        public static void RegisterBundles(BundleCollection bundles, bool isTheme1)
+        public static void RegisterBundles(BundleCollection bundles, bool IsDarkTheme)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js",
@@ -34,7 +34,7 @@ namespace ENI_Projet_Sport
                       "~/Content/Control.Geocoder.css",
                       "~/Content/leaflet-routing-machine.css"));
 
-            if (isTheme1)
+            if (IsDarkTheme)
             {
                 bundles.Add(new StyleBundle("~/Content/css").Include(
                  "~/Content/bootstrap.min.css",

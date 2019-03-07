@@ -38,14 +38,14 @@ namespace ENI_Projet_Sport.Controllers
             var user = UserManager.FindByIdAsync(User.Identity.GetUserId());            
             var person = _servicePerson.GetById(user.Result.person.Id);
 
-            person.IsTheme1 = !person.IsTheme1;
+            person.IsDarkTheme = !person.IsDarkTheme;
 
             _servicePerson.Update(person);
             _servicePerson.Commit();
 
             if(person != null)
             {
-                if (person.IsTheme1)
+                if (person.IsDarkTheme)
                     BundleConfig.RegisterBundles(BundleTable.Bundles, true);
                 else
                     BundleConfig.RegisterBundles(BundleTable.Bundles, false);
