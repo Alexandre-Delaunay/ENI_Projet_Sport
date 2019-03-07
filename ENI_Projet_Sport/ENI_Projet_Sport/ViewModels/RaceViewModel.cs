@@ -1,8 +1,12 @@
-﻿    using BO.Base;
+﻿using BO.Base;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.Web;
+using System.Net;
+using System.Web.Mvc;
+using Microsoft.AspNet.Identity.Owin;
 
 namespace ENI_Projet_Sport.ViewModels
 {

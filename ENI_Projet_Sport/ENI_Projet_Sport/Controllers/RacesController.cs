@@ -105,7 +105,6 @@ namespace ENI_Projet_Sport.Controllers
             Race race_from_db = _serviceRace.GetById(raceVM.Id);
             raceVM.Map(race_from_db);
             _serviceRace.Commit();
-            return View("index");
             return View(raceVM);
         }
 
