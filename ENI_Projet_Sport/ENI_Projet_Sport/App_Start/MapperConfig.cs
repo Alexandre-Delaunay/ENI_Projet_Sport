@@ -2,6 +2,7 @@
 using BO.Services;
 using ENI_Projet_Sport.Extensions;
 using ENI_Projet_Sport.ViewModels;
+using System;
 using System.Linq;
 
 namespace ENI_Projet_Sport.App_Start
@@ -47,6 +48,7 @@ namespace ENI_Projet_Sport.App_Start
                     .AfterMap((poco, vm) =>
                     {
                         vm.POIs = poco.POIs.Select(p => p.Map<POIViewModel>()).ToList();
+                        vm.RaceTypeId = poco.RaceType.Id.ToString();
 
                         vm.InitLists();
                     });
@@ -70,7 +72,10 @@ namespace ENI_Projet_Sport.App_Start
                     .AfterMap((vm, poco) =>
                     {
                         var servicePOI = vm.ServiceLocator.GetService<IServicePOI>();
+                        var serviceRaceType = vm.ServiceLocator.GetService<IServiceRaceType>();
                         poco.POIs = vm.POIs.Select(p => p.Map<POI>()).ToList();
+                        poco.RaceType = serviceRaceType.GetById(int.Parse(vm.RaceTypeId));
+                        //poco.POIs = servicePOI.GetAll().Where(p => vm.POIs.Contains(p.Map<POIViewModel>())).ToList();
                     });
                 config.CreateMap<CreateEditPOIViewModel, POI>()
                     .AfterMap((vm, poco) =>
