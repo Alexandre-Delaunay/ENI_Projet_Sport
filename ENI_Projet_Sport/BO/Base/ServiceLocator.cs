@@ -22,6 +22,7 @@ namespace BO.Base
             services.Add(typeof(IServiceRace), new ServiceRace());
             services.Add(typeof(IServiceDisplayConfiguration), new ServiceDisplayConfiguration());
             services.Add(typeof(IServicePOI), new ServicePOI());
+            services.Add(typeof(IServiceRaceType), new ServiceRaceType());
         }
 
         public static ServiceLocator Instance

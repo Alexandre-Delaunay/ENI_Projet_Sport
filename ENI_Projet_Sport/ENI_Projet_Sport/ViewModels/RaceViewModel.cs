@@ -21,6 +21,8 @@ namespace ENI_Projet_Sport.ViewModels
         [Required, DisplayName("Prix")]
         public virtual float Price { get; set; }
         public virtual string Description { get; set; }
+        [Required, DisplayName("Type de course")]
+        public virtual RaceTypeViewModel RaceType { get; set; }
         public virtual List<POIViewModel> POIs { get; set; }
         public virtual List<PersonViewModel> Persons { get; set; }
 
