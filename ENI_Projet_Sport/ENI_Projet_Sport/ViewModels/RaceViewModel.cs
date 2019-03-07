@@ -26,6 +26,8 @@ namespace ENI_Projet_Sport.ViewModels
         public virtual float Price { get; set; }
         public virtual string Description { get; set; }
 
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [Required, DisplayName("Date")]
         public virtual DateTime DateRace { get; set; }
         [Required, DisplayName("Type de course")]

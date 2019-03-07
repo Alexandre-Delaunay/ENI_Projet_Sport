@@ -16,7 +16,7 @@ namespace BO.Models
     {
         [Description("KmPerHour")]
         KmPerHour,
-        [Description("MeterPerHour")]
-        MeterPerHour
+        [Description("Miles")]
+        Miles
     }
 }
