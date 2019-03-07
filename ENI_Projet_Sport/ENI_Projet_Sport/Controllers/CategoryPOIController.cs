@@ -14,7 +14,7 @@ using ENI_Projet_Sport.Extensions;
 
 namespace ENI_Projet_Sport.Controllers
 {
-    //[Authorize]
+    [Authorize]
     public class CategoryPOIController : Controller
     {
         private static ServiceLocator _serviceLocator = ServiceLocator.Instance;

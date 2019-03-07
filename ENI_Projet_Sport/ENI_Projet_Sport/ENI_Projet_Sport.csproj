@@ -224,7 +224,6 @@
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\CategoryPOIViewModel.cs" />
     <Compile Include="ViewModels\CreateEditPersonViewModel.cs" />
-    <Compile Include="ViewModels\CreateEditPOIViewModel.cs" />
     <Compile Include="ViewModels\CreateEditRaceViewModel.cs" />
     <Compile Include="ViewModels\DisplayConfigurationViewModel.cs" />
     <Compile Include="ViewModels\PersonViewModel.cs" />
@@ -307,9 +306,7 @@
     <Content Include="Views\RaceTypes\Create.cshtml" />
     <Content Include="Views\RaceTypes\Delete.cshtml" />
     <Content Include="Views\RaceTypes\Edit.cshtml" />
-    <Content Include="Views\RaceTypes\Index.cshtml" />
     <Compile Include="Controllers\PersonController.cs" />
-    <Compile Include="Controllers\POIsController.cs" />
     <Compile Include="Controllers\RacesController.cs" />
     <Content Include="Views\RaceTypes\Index.cshtml" />
     <Content Include="Views\Person\Details.cshtml" />
@@ -321,15 +318,10 @@
     <Content Include="Views\Races\Details.cshtml" />
     <Content Include="Views\Races\Edit.cshtml" />
     <Content Include="Views\Races\Index.cshtml" />
-    <Content Include="Views\POIs\Create.cshtml" />
-    <Content Include="Views\POIs\Delete.cshtml" />
-    <Content Include="Views\POIs\Details.cshtml" />
-    <Content Include="Views\POIs\Edit.cshtml" />
-    <Content Include="Views\POIs\Index.cshtml" />
+    <Content Include="Views\Shared\_LoginMenu.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Inscription\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
