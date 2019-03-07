@@ -20,14 +20,11 @@ namespace ENI_Projet_Sport.App_Start
                         vm.POIs = poco.POIs.Select(p => p.Map<POIViewModel>()).ToList();
                         vm.Persons = poco.Persons.Select(p => p.Map<PersonViewModel>()).ToList();
                         vm.RaceType = poco.RaceType.Map<RaceTypeViewModel>();
+                        vm.isSubscribe = false;
                     });
                 config.CreateMap<Person, PersonViewModel>();
                 config.CreateMap<RaceType, RaceTypeViewModel>();
-                config.CreateMap<DisplayConfiguration, DisplayConfigurationViewModel>()
-                    /*.AfterMap((poco, vm) =>
-                    {
-                        vm.Person = poco.Person.Map<PersonViewModel>();
-                    })*/;
+                config.CreateMap<DisplayConfiguration, DisplayConfigurationViewModel>();
                 config.CreateMap<POI, POIViewModel>();
                 config.CreateMap<CategoryPOI, CategoryPOIViewModel>();
 
@@ -35,7 +32,6 @@ namespace ENI_Projet_Sport.App_Start
                 config.CreateMap<RaceViewModel, Race>()
                     .AfterMap((vm, poco) =>
                     {
-                        var serviceRaceType = vm.ServiceLocator.GetService<IServiceRaceType>();
                         poco.POIs = vm.POIs.Select(p => p.Map<POI>()).ToList();
                         poco.Persons = vm.Persons.Select(p => p.Map<Person>()).ToList();
                         poco.RaceType = vm.RaceType.Map<RaceType>();

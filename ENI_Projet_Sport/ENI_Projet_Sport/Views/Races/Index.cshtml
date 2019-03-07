@@ -30,6 +30,10 @@
             @Html.DisplayNameFor(model => model.Description)
         </th>
         <th></th>
+
+        <th></th>
+        <th></th>
+        <th></th>
     </tr>
 
 @foreach (var item in Model) {
@@ -37,7 +41,7 @@
         <td>
             @Html.DisplayFor(modelItem => item.Name)
         </td>
-        <td>
+        <td id="place_@item.Id" data-places="@item.PlacesNumber">
             @Html.DisplayFor(modelItem => item.PlacesNumber)
         </td>
         <td>
@@ -53,11 +57,122 @@
             @Html.DisplayFor(modelItem => item.Description)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            @Html.ActionLink("Details", "Details", new { id = item.Id })
         </td>
+            @using Microsoft.AspNet.Identity
+            @if (Request.IsAuthenticated)
+            {
+                <td>
+                    @if (item.PlacesNumber > 0)
+                    {
+                        if (item.isSubscribe)
+                        {
+                            <a data-id="@item.Id" class="unsubscribe_link">Unsubscribe</a>
+                        }
+                        else
+                        {
+                            <a data-id="@item.Id" class="register_link">Register</a>
+                        }
+                    }
+                    else
+                    {
+                        if (item.isSubscribe)
+                        {
+                            <a data-id="@item.Id" class="unsubscribe_link">Unsubscribe</a>
+                        }
+                        else
+                        {
+                            <p style="margin: 0;">Complet</p>
+                        }
+                    }
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id })
+                </td>
+                <td>
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </td>
+            }
     </tr>
 }
 
 </table>
+<script>
+    $('.register_link').unbind('click').on('click', register);
+
+    $('.unsubscribe_link').unbind('click').on('click', unsubscribe);
+
+    function register(evt) {
+        var $that = $(evt.currentTarget);
+        var id = $($that).data('id');
+        var td = $('#place_' + id);
+        var places = $(td).data('places');
+        $.ajax({
+            type: "POST",
+            url: "/Inscription/Create/" + id,
+            data: id,
+            dataType: "application/json",
+            complete: function (data) {
+                var obj = JSON.parse(data.responseText);
+                if (data.status == 200 && obj == 200) {
+                    var html = '<a data-id="'+id+'" class="unsubscribe_link">Unsubscribe</a>';
+                    var parent = $($that).parent()[0];
+                    $(parent).html(html);
+                    $(parent).find('.unsubscribe_link').unbind('click').on('click', unsubscribe);
+                    $(td).html(places - 1);
+                    $(td).data('places', places - 1);
+                    $.alert({
+                        title: 'Inscription effectuée!',
+                        content: 'Vous êtes inscrit à cette course!',
+                    });
+                }
+                else {
+                    $.alert({
+                        title: 'Erreur!',
+                        content: 'Une erreur est survenue, le nombre de participant à sûrement été atteint!',
+                    });
+                }
+            }
+        });
+    }
+    function unsubscribe(evt) {
+        $.confirm({
+            title: 'Attention!',
+            content: 'Souhaitez-vous vraiment vous désinscrire de cette course ?',
+            buttons: {
+                Oui: function () {
+                    var $that = $(evt.currentTarget);
+                    var id = $($that).data('id');
+                    var td = $('#place_' + id);
+                    var places = $(td).data('places');
+                    $.ajax({
+                        type: "POST",
+                        url: "/Inscription/Delete/" + id,
+                        data: id,
+                        dataType: "application/json",
+                        complete: function (data) {
+                            var obj = JSON.parse(data.responseText);
+                            if (data.status == 200 && obj == 200) {
+                                var html = '<a data-id="' + id + '" class="register_link">Register</a>';
+                                var parent = $($that).parent()[0];
+                                $(parent).html(html);
+                                $(parent).find('.register_link').unbind('click').on('click', register);
+                                $(td).html(places + 1);
+                                $(td).data('places', places + 1);
+                            }
+                            else {
+                                $.alert({
+                                    title: 'Erreur!',
+                                    content: 'Une erreur est survenue!',
+                                });
+                            }
+                        }
+                    });
+                },
+                Non: function () {
+
+                }
+            }
+        });
+    }
+</script>

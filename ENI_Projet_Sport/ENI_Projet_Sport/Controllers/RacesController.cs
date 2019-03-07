@@ -12,6 +12,8 @@ using BO.Base;
 using BO.Services;
 using ENI_Projet_Sport.Extensions;
 using ENI_Projet_Sport.ViewModels;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.AspNet.Identity;
 using System.Net.Http;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -20,6 +22,18 @@ namespace ENI_Projet_Sport.Controllers
 {
     public class RacesController : Controller
     {
+        private ApplicationUserManager _userManager;
+        public ApplicationUserManager UserManager
+        {
+            get
+            {
+                return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            }
+            private set
+            {
+                _userManager = value;
+            }
+        }
         private static ServiceLocator _serviceLocator = ServiceLocator.Instance;
         private static IServiceRace _serviceRace = _serviceLocator.GetService<IServiceRace>();
         private static IServiceRaceType _serviceRaceType = _serviceLocator.GetService<IServiceRaceType>();
@@ -29,8 +43,23 @@ namespace ENI_Projet_Sport.Controllers
         // GET: Races
         public ActionResult Index()
         {
-            var getAll = _serviceRace.GetAll().ToList();
-            return View(getAll.Select(e => e.Map<ViewModels.RaceViewModel>()).ToList());
+            var getAll = _serviceRace.GetAll().ToList().Select(e => e.Map<ViewModels.RaceViewModel>()).ToList();
+
+            var user = UserManager.FindByIdAsync(User.Identity.GetUserId());
+            if (user != null)
+            {
+                List<Race> UserRaces = user.Result.person.Races;
+
+                getAll.ForEach(r =>
+                {
+                    if (UserRaces.Select(race => race.Id).Contains(r.Id))
+                    {
+                        r.isSubscribe = true;
+                    }
+                });
+            }
+
+            return View(getAll);
         }
 
         // GET: Races/Details/5
@@ -59,24 +88,24 @@ namespace ENI_Projet_Sport.Controllers
         public ActionResult Create(CreateEditRaceViewModel raceVM)
         {
 
-            raceVM.DateMAJ = DateTime.Now;
+                raceVM.DateMAJ = DateTime.Now;
             Race race = raceVM.Map<Race>();
 
             var category = _serviceCategoryPOI.GetAll().Where(c => c.Name.Equals("Checkpoint")).FirstOrDefault();
 
-            race.POIs.ForEach(p =>
-            {                                        
-                p.DateMAJ = DateTime.Now;
+                race.POIs.ForEach(p =>
+                {                                        
+                    p.DateMAJ = DateTime.Now;
                 p.CategoryPOI = category;
-            });
+                });
 
             category = _serviceCategoryPOI.GetAll().Where(c => c.Name.Equals("Départ")).FirstOrDefault();
             race.POIs.First().CategoryPOI = category;
             category = _serviceCategoryPOI.GetAll().Where(c => c.Name.Equals("Arrivée")).FirstOrDefault();
             race.POIs.Last().CategoryPOI = category;
 
-            _serviceRace.Add(race);
-            _serviceRace.Commit();
+                _serviceRace.Add(race);
+                _serviceRace.Commit();
             return View(raceVM);
             //return new HttpResponseMessage(HttpStatusCode.InternalServerError);
         }
@@ -94,7 +123,7 @@ namespace ENI_Projet_Sport.Controllers
                 return HttpNotFound();
             }
             return View(race.Map<CreateEditRaceViewModel>());
-        }
+            }
 
         // POST: Races/Edit/5
         [HttpPost]
@@ -105,7 +134,7 @@ namespace ENI_Projet_Sport.Controllers
             Race race_from_db = _serviceRace.GetById(raceVM.Id);
             raceVM.Map(race_from_db);
             _serviceRace.Commit();
-            return View("index");
+            return RedirectToAction("index");
             return View(raceVM);
         }
 
