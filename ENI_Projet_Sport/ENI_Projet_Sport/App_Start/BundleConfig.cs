@@ -6,7 +6,7 @@ namespace ENI_Projet_Sport
     public class BundleConfig
     {
         // Pour plus d'informations sur le regroupement, visitez http://go.microsoft.com/fwlink/?LinkId=301862
-        public static void RegisterBundles(BundleCollection bundles)
+        public static void RegisterBundles(BundleCollection bundles, bool isTheme1)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js",
@@ -34,10 +34,20 @@ namespace ENI_Projet_Sport
                       "~/Content/Control.Geocoder.css",
                       "~/Content/leaflet-routing-machine.css"));
 
-            bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.min.css",
-                      "~/Content/site.css",
-                      "~/Content/jquery-confirm.css"));
+            if (isTheme1)
+            {
+                bundles.Add(new StyleBundle("~/Content/css").Include(
+                 "~/Content/bootstrap.min.css",
+                "~/Content/site.css",
+                "~/Content/jquery-confirm.css"));
+            }
+            else
+            {
+                bundles.Add(new StyleBundle("~/Content/css").Include(
+                "~/Content/bootswatchlux.min.css",
+                "~/Content/site.css",
+                "~/Content/jquery-confirm.css"));
+            }
         }
     }
 }

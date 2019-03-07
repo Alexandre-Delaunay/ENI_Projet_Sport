@@ -24,6 +24,7 @@ namespace BO.Models
 
         public virtual List<Race> Races { get; set; }
 
+        public virtual bool IsTheme1 { get; set; }
         public Person()
         {
             Initialize();
