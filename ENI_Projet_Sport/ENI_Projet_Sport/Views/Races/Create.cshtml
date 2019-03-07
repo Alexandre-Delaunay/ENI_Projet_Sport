@@ -132,10 +132,14 @@
             City: $("#City").val(),
             ZipCode: $("#ZipCode").val(),
             Price: $("#Price").val(),
-            Description: $("#Description").val(),      
+            Description: $("#Description").val(),    
             RaceTypeId: $("#RaceTypeId").val(),
-            POIs: POIs
+            Distance: routeControl._routes[0].summary.totalDistance,
+            POIs: POIs,
         }
+
+        console.log(typeof raceVM.Distance);
+        console.log(raceVM);
         
         $.ajax({
             type: "POST",
@@ -145,10 +149,10 @@
             complete: function(data){
                 console.log(data)
                 if(data.status == 200){
-                    /*document.location.href = '/Races';*/
+                    document.location.href = '/Races';
                 }
                 else{
-                    alert('erreur');
+                    alert('Une erreur est survenue.');
                 }
             }
         });

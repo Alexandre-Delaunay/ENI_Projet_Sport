@@ -58,7 +58,7 @@ namespace ENI_Projet_Sport.Controllers
         [HttpPost]
         public ActionResult Create(CreateEditRaceViewModel raceVM)
         {
-
+            raceVM.DateRace = DateTime.Now;
             raceVM.DateMAJ = DateTime.Now;
             Race race = raceVM.Map<Race>();
 

@@ -22,6 +22,10 @@ namespace BO.Models
 
         public virtual float Price { get; set; }
 
+        public virtual DateTime DateRace { get; set; }
+
+        public virtual float Distance { get; set; }
+
         [MaxLength(200)]
         public virtual string Description { get; set; }
 
