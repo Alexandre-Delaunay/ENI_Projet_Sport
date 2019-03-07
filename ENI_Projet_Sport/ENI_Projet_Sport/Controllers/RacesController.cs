@@ -47,7 +47,7 @@ namespace ENI_Projet_Sport.Controllers
             var getAll = _serviceRace.GetAll().ToList().Select(e => e.Map<ViewModels.RaceViewModel>()).ToList();
 
             var user = UserManager.FindByIdAsync(User.Identity.GetUserId());
-            if (user != null)
+            if (user.Result != null)
             {
                 List<Race> UserRaces = user.Result.person.Races;
                 var typeUnit = user.Result.displayConfiguration.TypeUnite;
