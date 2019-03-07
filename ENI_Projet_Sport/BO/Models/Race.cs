@@ -29,11 +29,11 @@ namespace BO.Models
         [MaxLength(200)]
         public virtual string Description { get; set; }
 
+        public virtual RaceType RaceType { get; set; }
+
         public virtual List<POI> POIs { get; set; }
 
         public virtual List<Person> Persons { get; set; }
-
-        public virtual RaceType RaceType { get; set; }
 
         public Race()
         {

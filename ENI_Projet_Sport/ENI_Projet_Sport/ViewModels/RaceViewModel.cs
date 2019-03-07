@@ -33,6 +33,7 @@ namespace ENI_Projet_Sport.ViewModels
         public virtual List<POIViewModel> POIs { get; set; }
         public virtual List<PersonViewModel> Persons { get; set; }
         public virtual float Distance { get; set; }
+        public virtual bool isSubscribe { get; set; }
 
         public RaceViewModel()
         {

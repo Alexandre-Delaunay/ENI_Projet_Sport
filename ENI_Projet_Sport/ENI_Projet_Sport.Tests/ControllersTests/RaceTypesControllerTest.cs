@@ -9,6 +9,7 @@ using System.Web.Mvc;
 
 namespace ENI_Projet_Sport.Tests.ControllersTests
 {
+    [TestClass]
     public class RaceTypesControllerTest
     {
         [TestMethod]

@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace ENI_Projet_Sport.ServicesTests.Tests
 {
+    [TestClass]
     public class ServicePersonTest
     {
         private static ServiceLocator _serviceLocator = ServiceLocator.Instance;
@@ -18,64 +19,56 @@ namespace ENI_Projet_Sport.ServicesTests.Tests
         [TestMethod]
         public void ServicePersonTest_Add()
         {
-            var person = MockHelper.Get_Persons()[0];
+            var person = MockHelper.Get_Persons(false)[0];
 
             _servicePerson.Add(person);
 
-            var result1 = _servicePerson.GetById(person.Id);
-
-            Assert.IsNull(result1);
-
             _servicePerson.Commit();
 
-            var result2 = _servicePerson.GetById(person.Id);
+            var result1 = _servicePerson.GetById(person.Id);
 
-            Assert.AreEqual(result2, person);
+            Assert.AreEqual(result1, person);
         }
 
         [TestMethod]
         public void ServicePersonTest_Update()
         {
-            var person = MockHelper.Get_Persons()[0];
+            var person = MockHelper.Get_Persons(false)[0];
+
+            _servicePerson.Add(person);
+            _servicePerson.Commit();
 
             person.FirstName = "Test Update";
 
             _servicePerson.Update(person);
 
-            var result1 = _servicePerson.GetById(person.Id);
-
-            Assert.AreNotEqual(person, result1);
-
             _servicePerson.Commit();
 
-            var result2 = _servicePerson.GetById(person.Id);
+            var result1 = _servicePerson.GetById(person.Id);
 
-            Assert.AreEqual(person.FirstName, result2.FirstName);
+            Assert.AreEqual(person.FirstName, result1.FirstName);
         }
 
         [TestMethod]
         public void ServicePersonTest_Delete()
         {
-            var person = MockHelper.Get_Persons()[0];
+            var person = MockHelper.Get_Persons(false)[0];
+
             _servicePerson.Add(person);
             _servicePerson.Commit();
 
             _servicePerson.Delete(person);
-
-            var result1 = _servicePerson.GetById(person.Id);
-            Assert.AreEqual(person, result1);
-
             _servicePerson.Commit();
 
-            var result2 = _servicePerson.GetById(person.Id);
-            Assert.IsNull(result2);
+            var result1 = _servicePerson.GetById(person.Id);
+            Assert.IsNull(result1);
         }
 
         [TestMethod]
         public void ServicePersonTest_GetById()
         {
-            var person1 = MockHelper.Get_Persons()[0];
-            var person2 = MockHelper.Get_Persons()[1];
+            var person1 = MockHelper.Get_Persons(false)[0];
+            var person2 = MockHelper.Get_Persons(false)[1];
 
             _servicePerson.Add(person1);
             _servicePerson.Add(person2);
@@ -91,19 +84,19 @@ namespace ENI_Projet_Sport.ServicesTests.Tests
         [TestMethod]
         public void ServicePersonTest_GetAll()
         {
+            var lstDeleted = _servicePerson.GetAll();
+
+            lstDeleted.ForEach(p => _servicePerson.Delete(p));
+            _servicePerson.Commit();
+
+            var persons = MockHelper.Get_Persons(false);
+
+            persons.ForEach(p => _servicePerson.Add(p));
+            _servicePerson.Commit();
+
             var result1 = _servicePerson.GetAll();
-            Assert.IsNull(result1);
 
-            var persons = MockHelper.Get_Persons();
-
-            foreach (var person in persons)
-            {
-                _servicePerson.Add(person);
-            }
-
-            var result2 = _servicePerson.GetAll();
-
-            CollectionAssert.AreEqual(persons, result2);
+            CollectionAssert.AreEqual(persons, result1);
         }
     }
 }
