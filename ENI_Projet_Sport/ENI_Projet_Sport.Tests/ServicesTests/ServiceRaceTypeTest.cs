@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace ENI_Projet_Sport.ServicesTests.Tests
 {
+    [TestClass]
     public class ServiceRaceTypeTest
     {
         private static ServiceLocator _serviceLocator = ServiceLocator.Instance;
@@ -18,64 +19,56 @@ namespace ENI_Projet_Sport.ServicesTests.Tests
         [TestMethod]
         public void ServiceRaceTypeTest_Add()
         {
-            var raceType = MockHelper.Get_RaceTypes()[0];
+            var raceType = MockHelper.Get_RaceTypes(false)[0];
 
             _serviceRaceType.Add(raceType);
 
-            var result1 = _serviceRaceType.GetById(raceType.Id);
-
-            Assert.IsNull(result1);
-
             _serviceRaceType.Commit();
 
-            var result2 = _serviceRaceType.GetById(raceType.Id);
+            var result1 = _serviceRaceType.GetById(raceType.Id);
 
-            Assert.AreEqual(result2, raceType);
+            Assert.AreEqual(result1, raceType);
         }
 
         [TestMethod]
         public void ServiceRaceTypeTest_Update()
         {
-            var raceType = MockHelper.Get_RaceTypes()[0];
+            var raceType = MockHelper.Get_RaceTypes(false)[0];
+
+            _serviceRaceType.Add(raceType);
+            _serviceRaceType.Commit();
 
             raceType.Name = "Test Update";
 
             _serviceRaceType.Update(raceType);
 
-            var result1 = _serviceRaceType.GetById(raceType.Id);
-
-            Assert.AreNotEqual(raceType, result1);
-
             _serviceRaceType.Commit();
 
-            var result2 = _serviceRaceType.GetById(raceType.Id);
+            var result1 = _serviceRaceType.GetById(raceType.Id);
 
-            Assert.AreEqual(raceType.Name, result2.Name);
+            Assert.AreEqual(raceType.Name, result1.Name);
         }
 
         [TestMethod]
         public void ServiceRaceTypeTest_Delete()
         {
-            var raceType = MockHelper.Get_RaceTypes()[0];
+            var raceType = MockHelper.Get_RaceTypes(false)[0];
+
             _serviceRaceType.Add(raceType);
             _serviceRaceType.Commit();
 
             _serviceRaceType.Delete(raceType);
-
-            var result1 = _serviceRaceType.GetById(raceType.Id);
-            Assert.AreEqual(raceType, result1);
-
             _serviceRaceType.Commit();
 
-            var result2 = _serviceRaceType.GetById(raceType.Id);
-            Assert.IsNull(result2);
+            var result1 = _serviceRaceType.GetById(raceType.Id);
+            Assert.IsNull(result1);
         }
 
         [TestMethod]
         public void ServiceRaceTypeTest_GetById()
         {
-            var raceType1 = MockHelper.Get_RaceTypes()[0];
-            var raceType2 = MockHelper.Get_RaceTypes()[1];
+            var raceType1 = MockHelper.Get_RaceTypes(false)[0];
+            var raceType2 = MockHelper.Get_RaceTypes(false)[1];
 
             _serviceRaceType.Add(raceType1);
             _serviceRaceType.Add(raceType2);
@@ -91,19 +84,19 @@ namespace ENI_Projet_Sport.ServicesTests.Tests
         [TestMethod]
         public void ServiceRaceTypeTest_GetAll()
         {
+            var lstDeleted = _serviceRaceType.GetAll();
+
+            lstDeleted.ForEach(r => _serviceRaceType.Delete(r));
+            _serviceRaceType.Commit();
+
+            var raceTypes = MockHelper.Get_RaceTypes(false);
+
+            raceTypes.ForEach(r => _serviceRaceType.Add(r));
+            _serviceRaceType.Commit();
+
             var result1 = _serviceRaceType.GetAll();
-            Assert.IsNull(result1);
 
-            var raceTypes = MockHelper.Get_RaceTypes();
-
-            foreach (var raceType in raceTypes)
-            {
-                _serviceRaceType.Add(raceType);
-            }
-
-            var result2 = _serviceRaceType.GetAll();
-
-            CollectionAssert.AreEqual(raceTypes, result2);
+            CollectionAssert.AreEqual(raceTypes, result1);
         }
     }
 }
