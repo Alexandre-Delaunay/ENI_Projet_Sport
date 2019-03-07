@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ENI_Projet_Sport.Tests
+namespace ENI_Projet_Sport.ServicesTests.Tests
 {
     public class ServicePersonTest
     {

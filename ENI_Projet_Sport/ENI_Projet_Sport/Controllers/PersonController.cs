@@ -17,6 +17,7 @@ using Microsoft.AspNet.Identity;
 
 namespace ENI_Projet_Sport.Controllers
 {
+    [Authorize]
     public class PersonController : Controller
     {
         private ApplicationUserManager _userManager;
@@ -35,6 +36,7 @@ namespace ENI_Projet_Sport.Controllers
         private static IServicePerson _servicePerson = _serviceLocator.GetService<IServicePerson>();
 
         // GET: Person
+        [AllowAnonymous]
         public ActionResult Index()
         {
             var lst = _servicePerson.GetAll();
@@ -43,6 +45,7 @@ namespace ENI_Projet_Sport.Controllers
         }
 
         // GET: Person/Details/5
+        [AllowAnonymous]
         public ActionResult Details(int? id)
         {
             if (id == null)
