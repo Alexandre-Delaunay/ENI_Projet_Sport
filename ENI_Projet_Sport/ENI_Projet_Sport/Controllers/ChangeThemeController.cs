@@ -38,6 +38,11 @@ namespace ENI_Projet_Sport.Controllers
             var user = UserManager.FindByIdAsync(User.Identity.GetUserId());            
             var person = _servicePerson.GetById(user.Result.person.Id);
 
+            person.IsTheme1 = !person.IsTheme1;
+
+            _servicePerson.Update(person);
+            _servicePerson.Commit();
+
             if(person != null)
             {
                 if (person.IsTheme1)
