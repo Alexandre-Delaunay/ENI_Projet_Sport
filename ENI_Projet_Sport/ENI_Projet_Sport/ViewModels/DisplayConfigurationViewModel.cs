@@ -11,7 +11,7 @@ namespace ENI_Projet_Sport.ViewModels
         public virtual int Id { get; set; }
         [DisplayName("Date de mise à jour")]
         public virtual DateTime DateMAJ { get; set; }
-        [Required]
+        [Required, DisplayName("Unité utilisée")]
         public virtual TypeUnit TypeUnite { get; set; }
 
         //public virtual PersonViewModel Person { get; set; }
