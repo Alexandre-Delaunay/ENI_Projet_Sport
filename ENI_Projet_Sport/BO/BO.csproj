@@ -93,6 +93,14 @@
     <Compile Include="Base\IServiceBase.cs" />
     <Compile Include="Base\IServiceLocator.cs" />
     <Compile Include="Base\ServiceLocator.cs" />
+    <Compile Include="Migrations\201903061322424_initdb2.cs" />
+    <Compile Include="Migrations\201903061322424_initdb2.Designer.cs">
+      <DependentUpon>201903061322424_initdb2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903061502512_AddRaceType.cs" />
+    <Compile Include="Migrations\201903061502512_AddRaceType.Designer.cs">
+      <DependentUpon>201903061502512_AddRaceType.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CategoryPOI.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -120,6 +128,14 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201903061322424_initdb2.resx">
+      <DependentUpon>201903061322424_initdb2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903061502512_AddRaceType.resx">
+      <DependentUpon>201903061502512_AddRaceType.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

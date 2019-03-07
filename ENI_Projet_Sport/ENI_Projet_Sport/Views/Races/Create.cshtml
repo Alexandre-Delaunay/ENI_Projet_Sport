@@ -26,6 +26,14 @@
                 @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
             </div>
         </div>
+        
+        <div class="form-group">
+            @Html.LabelFor(model => model.DateRace, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.DateRace, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DateRace, "", new { @class = "text-danger" })
+            </div>
+        </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.PlacesNumber, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -128,14 +136,19 @@
 
         var raceVM = {
             Name: $("#Name").val(),
+            DateRace: $("#DateRace").val(),
             PlacesNumber: $("#PlacesNumber").val(),
             City: $("#City").val(),
             ZipCode: $("#ZipCode").val(),
             Price: $("#Price").val(),
-            Description: $("#Description").val(),      
+            Description: $("#Description").val(),    
             RaceTypeId: $("#RaceTypeId").val(),
-            POIs: POIs
+            Distance: get_total_distance(),
+            POIs: POIs,
         }
+
+        console.log(typeof raceVM.Distance);
+        console.log(raceVM);
         
         $.ajax({
             type: "POST",
@@ -145,12 +158,17 @@
             complete: function(data){
                 console.log(data)
                 if(data.status == 200){
-                    /*document.location.href = '/Races';*/
+                    document.location.href = '/Races';
                 }
                 else{
-                    alert('erreur');
+                    alert('Une erreur est survenue.');
                 }
             }
         });
+    }
+
+    function get_total_distance(){
+        console.log(routeControl._routes[0].summary.totalDistance.toString().replace('.', ','))
+        return routeControl._routes[0].summary.totalDistance.toString().replace('.', ',');
     }
 </script>

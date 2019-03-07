@@ -3,6 +3,10 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.Web;
+using System.Net;
+using System.Web.Mvc;
+using Microsoft.AspNet.Identity.Owin;
 
 namespace ENI_Projet_Sport.ViewModels
 {
@@ -21,10 +25,16 @@ namespace ENI_Projet_Sport.ViewModels
         [Required, DisplayName("Prix")]
         public virtual float Price { get; set; }
         public virtual string Description { get; set; }
+
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [Required, DisplayName("Date")]
+        public virtual DateTime DateRace { get; set; }
         [Required, DisplayName("Type de course")]
         public virtual RaceTypeViewModel RaceType { get; set; }
         public virtual List<POIViewModel> POIs { get; set; }
         public virtual List<PersonViewModel> Persons { get; set; }
+        public virtual float Distance { get; set; }
         public virtual bool isSubscribe { get; set; }
 
         public RaceViewModel()

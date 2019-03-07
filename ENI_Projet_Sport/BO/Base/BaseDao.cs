@@ -56,7 +56,7 @@ namespace BO.Base
             var success = false;
 
             if (entity != null)
-            {               
+            {
                 ApplicationDbContextSingleton.ContextInstance.Entry(entity).State = EntityState.Modified;
                 success = true;
             }
