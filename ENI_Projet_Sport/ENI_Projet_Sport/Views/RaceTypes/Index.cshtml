@@ -1,13 +1,13 @@
 ﻿@model IEnumerable<ENI_Projet_Sport.ViewModels.RaceTypeViewModel>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Liste des types de course";
 }
 
-<h2>Index</h2>
+<h2>Liste des types de course</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Ajouter un type de course", "Create")
 </p>
 <table class="table">
     <tr>
@@ -22,8 +22,8 @@
             @Html.DisplayFor(modelItem => item.Name)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            @Html.ActionLink("Modifier", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Supprimer", "Delete", new { id=item.Id })
         </td>
     </tr>
 }
