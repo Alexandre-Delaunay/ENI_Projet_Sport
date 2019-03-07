@@ -31,8 +31,6 @@ namespace BO.Models
 
         public virtual List<Person> Persons { get; set; }
 
-        public virtual RaceType RaceType { get; set; }
-
         public Race()
         {
             Initialize();
