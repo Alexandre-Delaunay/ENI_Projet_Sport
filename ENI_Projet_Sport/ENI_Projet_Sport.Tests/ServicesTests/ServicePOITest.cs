@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace ENI_Projet_Sport.ServicesTests.Tests
 {
+    [TestClass]
     public class ServicePOITest
     {
         private static ServiceLocator _serviceLocator = ServiceLocator.Instance;
@@ -18,64 +19,56 @@ namespace ENI_Projet_Sport.ServicesTests.Tests
         [TestMethod]
         public void ServicePOITest_Add()
         {
-            var pOI = MockHelper.Get_POIs()[0];
+            var pOI = MockHelper.Get_POIs(false)[0];
 
             _servicePOI.Add(pOI);
 
-            var result1 = _servicePOI.GetById(pOI.Id);
-
-            Assert.IsNull(result1);
-
             _servicePOI.Commit();
 
-            var result2 = _servicePOI.GetById(pOI.Id);
+            var result1 = _servicePOI.GetById(pOI.Id);
 
-            Assert.AreEqual(result2, pOI);
+            Assert.AreEqual(result1, pOI);
         }
 
         [TestMethod]
         public void ServicePOITest_Update()
         {
-            var pOI = MockHelper.Get_POIs()[0];
+            var pOI = MockHelper.Get_POIs(false)[0];
+
+            _servicePOI.Add(pOI);
+            _servicePOI.Commit();
 
             pOI.Latitude = 5415;
 
             _servicePOI.Update(pOI);
 
-            var result1 = _servicePOI.GetById(pOI.Id);
-
-            Assert.AreNotEqual(pOI, result1);
-
             _servicePOI.Commit();
 
-            var result2 = _servicePOI.GetById(pOI.Id);
+            var result1 = _servicePOI.GetById(pOI.Id);
 
-            Assert.AreEqual(pOI.Latitude, result2.Latitude);
+            Assert.AreEqual(pOI.Latitude, result1.Latitude);
         }
 
         [TestMethod]
         public void ServicePOITest_Delete()
         {
-            var pOI = MockHelper.Get_POIs()[0];
+            var pOI = MockHelper.Get_POIs(false)[0];
+
             _servicePOI.Add(pOI);
             _servicePOI.Commit();
 
             _servicePOI.Delete(pOI);
-
-            var result1 = _servicePOI.GetById(pOI.Id);
-            Assert.AreEqual(pOI, result1);
-
             _servicePOI.Commit();
 
-            var result2 = _servicePOI.GetById(pOI.Id);
-            Assert.IsNull(result2);
+            var result1 = _servicePOI.GetById(pOI.Id);
+            Assert.IsNull(result1);
         }
 
         [TestMethod]
         public void ServicePOITest_GetById()
         {
-            var pOI1 = MockHelper.Get_POIs()[0];
-            var pOI2 = MockHelper.Get_POIs()[1];
+            var pOI1 = MockHelper.Get_POIs(false)[0];
+            var pOI2 = MockHelper.Get_POIs(false)[1];
 
             _servicePOI.Add(pOI1);
             _servicePOI.Add(pOI2);
@@ -91,19 +84,19 @@ namespace ENI_Projet_Sport.ServicesTests.Tests
         [TestMethod]
         public void ServicePOITest_GetAll()
         {
+            var lstDeleted = _servicePOI.GetAll();
+
+            lstDeleted.ForEach(p => _servicePOI.Delete(p));
+            _servicePOI.Commit();
+
+            var pOIs = MockHelper.Get_POIs(false);
+
+            pOIs.ForEach(p => _servicePOI.Add(p));
+            _servicePOI.Commit();
+
             var result1 = _servicePOI.GetAll();
-            Assert.IsNull(result1);
 
-            var pOIs = MockHelper.Get_POIs();
-
-            foreach (var pOI in pOIs)
-            {
-                _servicePOI.Add(pOI);
-            }
-
-            var result2 = _servicePOI.GetAll();
-
-            CollectionAssert.AreEqual(pOIs, result2);
+            CollectionAssert.AreEqual(pOIs, result1);
         }
     }
 }
