@@ -19,6 +19,7 @@ namespace ENI_Projet_Sport.App_Start
                         vm.POIs = poco.POIs.Select(p => p.Map<POIViewModel>()).ToList();
                         vm.Persons = poco.Persons.Select(p => p.Map<PersonViewModel>()).ToList();
                         vm.RaceType = poco.RaceType.Map<RaceTypeViewModel>();
+                        vm.isSubscribe = false;
                     });
                 config.CreateMap<Person, PersonViewModel>();
                 config.CreateMap<RaceType, RaceTypeViewModel>();

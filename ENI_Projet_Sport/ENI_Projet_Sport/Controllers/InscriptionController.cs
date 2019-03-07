@@ -50,9 +50,20 @@ namespace ENI_Projet_Sport.Controllers
 
                 if (!person.Races.Contains(race))
                 {
-                    person.Races.Add(race);
-                    _servicePerson.Update(person);
-                    _servicePerson.Commit();
+                    if (race.PlacesNumber > 0)
+                    {
+                        race.PlacesNumber = race.PlacesNumber - 1;
+                        _serviceRace.Update(race);
+                        _serviceRace.Commit();
+
+                        person.Races.Add(race);
+                        _servicePerson.Update(person);
+                        _servicePerson.Commit();
+                    }
+                    else
+                    {
+                        return Json(HttpStatusCode.InternalServerError);
+                    }
                 }
                 
                 return Json(HttpStatusCode.OK);
@@ -80,6 +91,10 @@ namespace ENI_Projet_Sport.Controllers
 
                 if (person.Races.Contains(race))
                 {
+                    race.PlacesNumber = race.PlacesNumber + 1;
+                    _serviceRace.Update(race);
+                    _serviceRace.Commit();
+
                     person.Races.Remove(race);
                     _servicePerson.Commit();
                 }

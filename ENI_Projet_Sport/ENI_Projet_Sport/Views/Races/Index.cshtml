@@ -41,7 +41,7 @@
         <td>
             @Html.DisplayFor(modelItem => item.Name)
         </td>
-        <td>
+        <td id="place_@item.Id" data-places="@item.PlacesNumber">
             @Html.DisplayFor(modelItem => item.PlacesNumber)
         </td>
         <td>
@@ -63,7 +63,28 @@
             @if (Request.IsAuthenticated)
             {
                 <td>
-                    <a data-id="@item.Id" class="register_link">Register</a>
+                    @if (item.PlacesNumber > 0)
+                    {
+                        if (item.isSubscribe)
+                        {
+                            <a data-id="@item.Id" class="unsubscribe_link">Unsubscribe</a>
+                        }
+                        else
+                        {
+                            <a data-id="@item.Id" class="register_link">Register</a>
+                        }
+                    }
+                    else
+                    {
+                        if (item.isSubscribe)
+                        {
+                            <a data-id="@item.Id" class="unsubscribe_link">Unsubscribe</a>
+                        }
+                        else
+                        {
+                            <p>Complet</p>
+                        }
+                    }
                 </td>
                 <td>
                     @Html.ActionLink("Edit", "Edit", new { id = item.Id })
@@ -84,6 +105,8 @@
     function register(evt) {
         var $that = $(evt.currentTarget);
         var id = $($that).data('id');
+        var td = $('#place_' + id);
+        var places = $(td).data('places');
         $.ajax({
             type: "POST",
             url: "/Inscription/Create/" + id,
@@ -93,8 +116,11 @@
                 var obj = JSON.parse(data.responseText);
                 if (data.status == 200 && obj == 200) {
                     var html = '<a data-id="'+id+'" class="unsubscribe_link">Unsubscribe</a>';
-                    $($that).parent().html(html);
-                    $('.unsubscribe_link').unbind('click').on('click', unsubscribe);
+                    var parent = $($that).parent()[0];
+                    $(parent).html(html);
+                    $(parent).find('.unsubscribe_link').unbind('click').on('click', unsubscribe);
+                    $(td).html(places - 1);
+                    $(td).data('places', places - 1);
                     $.alert({
                         title: 'Inscription effectuée!',
                         content: 'Vous êtes inscrit à cette course!',
@@ -103,7 +129,7 @@
                 else {
                     $.alert({
                         title: 'Erreur!',
-                        content: 'Une erreur est survenue!',
+                        content: 'Une erreur est survenue, le nombre de participant à sûrement été atteint!',
                     });
                 }
             }
@@ -117,6 +143,8 @@
                 Oui: function () {
                     var $that = $(evt.currentTarget);
                     var id = $($that).data('id');
+                    var td = $('#place_' + id);
+                    var places = $(td).data('places');
                     $.ajax({
                         type: "POST",
                         url: "/Inscription/Delete/" + id,
@@ -126,8 +154,11 @@
                             var obj = JSON.parse(data.responseText);
                             if (data.status == 200 && obj == 200) {
                                 var html = '<a data-id="' + id + '" class="register_link">Register</a>';
-                                $($that).parent().html(html);
-                                $('.register_link').unbind('click').on('click', register);
+                                var parent = $($that).parent()[0];
+                                $(parent).html(html);
+                                $(parent).find('.register_link').unbind('click').on('click', register);
+                                $(td).html(places + 1);
+                                $(td).data('places', places + 1);
                             }
                             else {
                                 $.alert({
@@ -143,28 +174,5 @@
                 }
             }
         });
-
-        /*var $that = $(evt.currentTarget);
-        var id = $($that).data('id');
-        $.ajax({
-            type: "POST",
-            url: "/Inscription/Delete/" + id,
-            data: id,
-            dataType: "application/json",
-            complete: function (data) {
-                var obj = JSON.parse(data.responseText);
-                if (data.status == 200 && obj == 200) {
-                    var html = '<a data-id="'+id+'" class="register_link">Register</a>';
-                    $($that).parent().html(html);
-                    $('.register_link').unbind('click').on('click', register);
-                }
-                else {
-                    $.alert({
-                        title: 'Erreur!',
-                        content: 'Une erreur est survenue!',
-                    });
-                }
-            }
-        });*/
     }
 </script>
