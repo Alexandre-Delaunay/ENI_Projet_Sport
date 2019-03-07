@@ -17,6 +17,7 @@ using System.Web.Helpers;
 
 namespace ENI_Projet_Sport.Controllers
 {
+    [Authorize]
     public class InscriptionController : Controller
     {
         private ApplicationUserManager _userManager;
