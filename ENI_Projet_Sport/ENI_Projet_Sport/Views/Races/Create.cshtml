@@ -87,14 +87,14 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="button" value="Ajouter" class="btn btn-default" onclick="send_to_controller();"/>
+                <input type="button" value="Ajouter" class="btn btn-outline-primary" onclick="send_to_controller();"/>
             </div>
         </div>
     </div>
 }
 
 <div>
-    @Html.ActionLink("Retour à la liste", "Index")
+    @Html.ActionLink("Retour à la liste", "Index", routeValues: null, htmlAttributes: new { @class = "btn btn-outline-secondary" })
 </div>
 
 @section Scripts {

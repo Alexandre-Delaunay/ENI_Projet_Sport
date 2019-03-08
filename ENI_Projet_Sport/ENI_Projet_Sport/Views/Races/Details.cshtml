@@ -81,8 +81,8 @@
 </div>
 <div id="mapid"></div>
 <p>
-    @Html.ActionLink("Modifier", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Retour à la liste", "Index")
+    @Html.ActionLink("Modifier", "Edit", new { id = Model.Id }, htmlAttributes: new { @class = "btn btn-outline-success" }) |
+    @Html.ActionLink("Retour à la liste", "Index", routeValues: null, htmlAttributes: new { @class = "btn btn-outline-secondary" })
 </p>
 
 <script>

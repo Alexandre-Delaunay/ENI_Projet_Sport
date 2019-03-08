@@ -23,8 +23,8 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Supprimer" class="btn btn-default" /> |
-            @Html.ActionLink("Retour à la liste", "Index")
+            <input type="submit" value="Supprimer" class="btn btn-outline-danger" /> |
+            @Html.ActionLink("Retour à la liste", "Index", routeValues: null, htmlAttributes: new { @class = "btn btn-outline-secondary" })
         </div>
     }
 </div>

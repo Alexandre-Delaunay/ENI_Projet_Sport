@@ -8,6 +8,7 @@ using ENI_Projet_Sport.Extensions;
 using ENI_Projet_Sport.ViewModels;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.AspNet.Identity;
+using System.Web.Optimization;
 
 namespace ENI_Projet_Sport.Controllers
 {
@@ -53,9 +54,12 @@ namespace ENI_Projet_Sport.Controllers
                 var displayConfig = _serviceDisplayConfiguration.GetById(displayConfigurationVM.Id);
                 displayConfig.DateMAJ = DateTime.Now;
                 displayConfig.TypeUnite = displayConfigurationVM.TypeUnite;
+                displayConfig.IsDarkTheme = displayConfigurationVM.IsDarkTheme;
 
                 _serviceDisplayConfiguration.Update(displayConfig);
                 _serviceDisplayConfiguration.Commit();
+
+                BundleConfig.RegisterBundles(BundleTable.Bundles, displayConfig.IsDarkTheme);
 
                 return RedirectToAction("..");
             }
