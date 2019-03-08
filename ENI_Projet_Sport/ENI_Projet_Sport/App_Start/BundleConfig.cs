@@ -37,16 +37,16 @@ namespace ENI_Projet_Sport
             if (IsDarkTheme)
             {
                 bundles.Add(new StyleBundle("~/Content/css").Include(
-                 "~/Content/bootstrap.min.css",
-                "~/Content/site.css",
-                "~/Content/jquery-confirm.css"));
+                 "~/Content/bootswatchlux.min.css",
+                 "~/Content/site.css",
+                 "~/Content/jquery-confirm.css"));
             }
             else
-            {
+            {              
                 bundles.Add(new StyleBundle("~/Content/css").Include(
-                "~/Content/bootswatchlux.min.css",
-                "~/Content/site.css",
-                "~/Content/jquery-confirm.css"));
+                  "~/Content/bootstrap.min.css",
+                 "~/Content/site.css",
+                 "~/Content/jquery-confirm.css"));
             }
         }
     }

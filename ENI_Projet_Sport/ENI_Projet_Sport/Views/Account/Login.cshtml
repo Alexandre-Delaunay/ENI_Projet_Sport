@@ -38,11 +38,11 @@
                 </div>
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Connexion" class="btn btn-default" />
+                        <input type="submit" value="Connexion" class="btn btn-outline-primary" />
                     </div>
                 </div>
                 <p>
-                    @Html.ActionLink("S'inscrire comme nouvel utilisateur", "Register")
+                    @Html.ActionLink("S'inscrire comme nouvel utilisateur", "Register", routeValues: null, htmlAttributes: new { @class = "btn btn-outline-secondary" })
                 </p>
                 @* Activer ceci une fois que la confirmation de votre compte est activée pour la fonctionnalité de réinitialisation du mot de passe
                     <p>

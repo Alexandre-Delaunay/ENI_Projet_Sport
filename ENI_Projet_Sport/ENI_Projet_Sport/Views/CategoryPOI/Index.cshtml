@@ -24,10 +24,10 @@
             @Html.DisplayFor(modelItem => item.Name)
         </td>
         <td>
-            @Html.ActionLink("Modifier", "Edit", new { id = item.Id })
+            @Html.ActionLink("Modifier", "Edit", new { id = item.Id }, htmlAttributes: new { @class = "btn btn-outline-success" })
         </td>
         <td>
-            @Html.ActionLink("Supprimer", "Delete", new { id = item.Id })
+            @Html.ActionLink("Supprimer", "Delete", new { id = item.Id }, htmlAttributes: new { @class = "btn btn-outline-danger" })
         </td>
     </tr>
 }

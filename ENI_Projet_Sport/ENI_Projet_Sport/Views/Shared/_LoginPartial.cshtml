@@ -7,15 +7,15 @@
         
     }
     <ul class="nav navbar-nav navbar-right">
-        <li>@Html.ActionLink("Paramètres", "Edit", "DisplayConfiguration", routeValues: null, htmlAttributes: new { id = "settingsLink" })</li>
-        <li>@Html.ActionLink(User.Identity.GetUserName().Split('@').First(), "Edit", "Person", routeValues: null, htmlAttributes: new { })</li>
-        <li><a href="javascript:document.getElementById('logoutForm').submit()">Se déconnecter</a></li>
+        <li>@Html.ActionLink("Paramètres", "Edit", "DisplayConfiguration", routeValues: null, htmlAttributes: new { @class = "nav-link" })</li>
+        <li>@Html.ActionLink(User.Identity.GetUserName().Split('@').First(), "Edit", "Person", routeValues: null, htmlAttributes: new { @class = "nav-link" })</li>
+        <li><a href="javascript:document.getElementById('logoutForm').submit()" class="nav-link">Se déconnecter</a></li>
     </ul>
 }
 else
 {
     <ul class="nav navbar-nav navbar-right">
-        <li>@Html.ActionLink("S’inscrire", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
-        <li>@Html.ActionLink("Se connecter", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+        <li>@Html.ActionLink("S’inscrire", "Register", "Account", routeValues: null, htmlAttributes: new { @class = "nav-link" })</li>
+        <li>@Html.ActionLink("Se connecter", "Login", "Account", routeValues: null, htmlAttributes: new { @class = "nav-link" })</li>
     </ul>
 }

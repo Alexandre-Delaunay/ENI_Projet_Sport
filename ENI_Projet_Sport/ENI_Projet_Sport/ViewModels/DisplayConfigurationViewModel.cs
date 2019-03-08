@@ -13,7 +13,8 @@ namespace ENI_Projet_Sport.ViewModels
         public virtual DateTime DateMAJ { get; set; }
         [Required, DisplayName("Unité utilisée")]
         public virtual TypeUnit TypeUnite { get; set; }
+        [DisplayName("Dark mode")]
+        public virtual bool IsDarkTheme { get; set; }
 
-        //public virtual PersonViewModel Person { get; set; }
     }
 }

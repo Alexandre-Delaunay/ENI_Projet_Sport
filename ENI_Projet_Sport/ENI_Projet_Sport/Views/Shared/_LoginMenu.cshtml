@@ -1,7 +1,7 @@
 ﻿@using Microsoft.AspNet.Identity
 @if (Request.IsAuthenticated)
 {
-    <li>@Html.ActionLink("Personnes", "Index", "Person")</li>
-    <li>@Html.ActionLink("Catégories POI", "Index", "CategoryPOI")</li>
-    <li>@Html.ActionLink("Types de course", "Index", "RaceTypes")</li>
+    <li>@Html.ActionLink("Personnes", "Index", "Person", routeValues: null, htmlAttributes:  new { @class = "nav-link" })</li>
+    <li>@Html.ActionLink("Catégories POI", "Index", "CategoryPOI", routeValues: null, htmlAttributes: new { @class = "nav-link" })</li>
+    <li>@Html.ActionLink("Types de course", "Index", "RaceTypes", routeValues: null, htmlAttributes: new { @class = "nav-link" })</li>
 }

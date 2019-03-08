@@ -102,13 +102,13 @@
                     }
                 </td>
                 <td>
-                    @Html.ActionLink("Modifer", "Edit", new { id = item.Id })
+                    @Html.ActionLink("Modifer", "Edit", new { id = item.Id }, htmlAttributes: new { @class = "btn btn-outline-success" })
                 </td>
                 <td>
-                    @Html.ActionLink("Détail", "Details", new { id = item.Id })
+                    @Html.ActionLink("Détail", "Details", new { id = item.Id }, htmlAttributes: new { @class = "btn btn-outline-secondary" })
                 </td>
                 <td>
-                    @Html.ActionLink("Supprimer", "Delete", new { id = item.Id })
+                    @Html.ActionLink("Supprimer", "Delete", new { id = item.Id }, htmlAttributes: new { @class = "btn btn-outline-danger" })
                 </td>
             }
     </tr>
