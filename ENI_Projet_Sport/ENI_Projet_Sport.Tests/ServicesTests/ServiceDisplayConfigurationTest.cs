@@ -39,7 +39,7 @@ namespace ENI_Projet_Sport.ServicesTests.Tests
             _serviceDisplayConfiguration.Add(displayConfiguration);
             _serviceDisplayConfiguration.Commit();
 
-            displayConfiguration.TypeUnite = TypeUnit.MeterPerHour;
+            displayConfiguration.TypeUnite = TypeUnit.Miles;
 
             _serviceDisplayConfiguration.Update(displayConfiguration);
 

@@ -56,7 +56,7 @@ namespace ENI_Projet_Sport.Tests.Helpers
             var displayConfiguration2 = new DisplayConfiguration
             {
                 DateMAJ = DateTime.Now,
-                TypeUnite = TypeUnit.MeterPerHour,
+                TypeUnite = TypeUnit.Miles,
             };
 
             lst.Add(displayConfiguration1);

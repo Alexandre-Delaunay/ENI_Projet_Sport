@@ -18,6 +18,8 @@ using System.Net.Http;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using ENI_Projet_Sport.Helpers;
+using System.Dynamic;
+using System.Web.Script.Serialization;
 
 namespace ENI_Projet_Sport.Controllers
 {
@@ -115,26 +117,63 @@ namespace ENI_Projet_Sport.Controllers
         [HttpPost]
         public ActionResult Create(CreateEditRaceViewModel raceVM)
         {
-            raceVM.DateMAJ = DateTime.Now;
-            Race race = raceVM.Map<Race>();
+            dynamic errorObj = new ExpandoObject();
+            if (raceVM.POIs.Count() < 2)
+            {
+                errorObj.POIs = "Le nombre de POI est insuffisant.";
+            }
+            if (raceVM.City==null)
+            {
+                errorObj.City = "Le champ Ville doit être renseigné.";
+            }
+            if (DateTime.Compare(raceVM.DateRace, DateTime.Now) < 0)
+            {
+                errorObj.DateRace = "La date de la course doit être supérieure ou égale à la date du jour.";
+            }
+            if (raceVM.Name == null)
+            {
+                errorObj.Name = "Le champ Nom de la course doit être renseigné.";
+            }
+            if (raceVM.PlacesNumber <= 0)
+            {
+                errorObj.PlacesNumber = "Le nombre de place doit être supérieur à 0.";
+            }
+            if (raceVM.Price == 0)
+            {
+                errorObj.Price = "Le prix de la course doit être supérieur à 0.";
+            }
+            if (raceVM.RaceTypeId == null)
+            {
+                errorObj.RaceTypeId = "Le champ Type de course doit être renseigné.";
+            }
+            if (raceVM.ZipCode == null)
+            {
+                errorObj.ZipCode = "Le champ Code postal doit être renseigné.";
+            }
 
-            var category = _serviceCategoryPOI.GetAll().Where(c => c.Name.Equals("Checkpoint")).FirstOrDefault();
+            if (ModelState.IsValid)
+            {
+                raceVM.DateMAJ = DateTime.Now;
+                Race race = raceVM.Map<Race>();
+                var category = _serviceCategoryPOI.GetAll().Where(c => c.Name.Equals("Checkpoint")).FirstOrDefault();
 
-            race.POIs.ForEach(p =>
-            {                                        
-                p.DateMAJ = DateTime.Now;
-                p.CategoryPOI = category;
-            });
+                race.POIs.ForEach(p =>
+                {
+                    p.DateMAJ = DateTime.Now;
+                    p.CategoryPOI = category;
+                });
 
-            category = _serviceCategoryPOI.GetAll().Where(c => c.Name.Equals("Départ")).FirstOrDefault();
-            race.POIs.First().CategoryPOI = category;
-            category = _serviceCategoryPOI.GetAll().Where(c => c.Name.Equals("Arrivée")).FirstOrDefault();
-            race.POIs.Last().CategoryPOI = category;
+                category = _serviceCategoryPOI.GetAll().Where(c => c.Name.Equals("Départ")).FirstOrDefault();
+                race.POIs.First().CategoryPOI = category;
+                category = _serviceCategoryPOI.GetAll().Where(c => c.Name.Equals("Arrivée")).FirstOrDefault();
+                race.POIs.Last().CategoryPOI = category;
 
-            _serviceRace.Add(race);
-            _serviceRace.Commit();
-            return View(raceVM);
-            //return new HttpResponseMessage(HttpStatusCode.InternalServerError);
+                _serviceRace.Add(race);
+                _serviceRace.Commit();
+                return View(raceVM);
+            }
+            string json = new JavaScriptSerializer().Serialize(errorObj);
+            return new HttpStatusCodeResult(HttpStatusCode.BadRequest, json);
         }
 
         // GET: Races/Edit/5

@@ -1,13 +1,13 @@
 ﻿@model IEnumerable<ENI_Projet_Sport.ViewModels.RaceViewModel>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Liste des courses";
 }
 
-<h2>Index</h2>
+<h2>Liste des courses</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Ajouter une course", "Create")
 </p>
 <table class="table">
     <tr>
@@ -82,18 +82,18 @@
                     {
                         if (item.isSubscribe)
                         {
-                            <a data-id="@item.Id" class="unsubscribe_link">Unsubscribe</a>
+                            <a data-id="@item.Id" class="unsubscribe_link">Se désinscrire</a>
                         }
                         else
                         {
-                            <a data-id="@item.Id" class="register_link">Register</a>
+                            <a data-id="@item.Id" class="register_link">S'inscrire</a>
                         }
                     }
                     else
                     {
                         if (item.isSubscribe)
                         {
-                            <a data-id="@item.Id" class="unsubscribe_link">Unsubscribe</a>
+                            <a data-id="@item.Id" class="unsubscribe_link">Se désinscrire</a>
                         }
                         else
                         {
@@ -102,13 +102,13 @@
                     }
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.Id })
+                    @Html.ActionLink("Modifer", "Edit", new { id = item.Id })
                 </td>
                 <td>
                     @Html.ActionLink("Détail", "Details", new { id = item.Id })
                 </td>
                 <td>
-                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                    @Html.ActionLink("Supprimer", "Delete", new { id = item.Id })
                 </td>
             }
     </tr>
@@ -133,7 +133,7 @@
             complete: function (data) {
                 var obj = JSON.parse(data.responseText);
                 if (data.status == 200 && obj == 200) {
-                    var html = '<a data-id="'+id+'" class="unsubscribe_link">Unsubscribe</a>';
+                    var html = '<a data-id="' + id + '" class="unsubscribe_link">Se désinscrire</a>';
                     var parent = $($that).parent()[0];
                     $(parent).html(html);
                     $(parent).find('.unsubscribe_link').unbind('click').on('click', unsubscribe);
@@ -171,7 +171,7 @@
                         complete: function (data) {
                             var obj = JSON.parse(data.responseText);
                             if (data.status == 200 && obj == 200) {
-                                var html = '<a data-id="' + id + '" class="register_link">Register</a>';
+                                var html = '<a data-id="' + id + '" class="register_link">S\'inscrire</a>';
                                 var parent = $($that).parent()[0];
                                 $(parent).html(html);
                                 $(parent).find('.register_link').unbind('click').on('click', register);
