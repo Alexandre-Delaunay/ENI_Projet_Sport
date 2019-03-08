@@ -119,37 +119,28 @@ namespace ENI_Projet_Sport.Controllers
         {
             dynamic errorObj = new ExpandoObject();
             if (raceVM.POIs.Count() < 2)
-            {
                 errorObj.POIs = "Le nombre de POI est insuffisant.";
-            }
+
             if (raceVM.City==null)
-            {
                 errorObj.City = "Le champ Ville doit être renseigné.";
-            }
+
             if (DateTime.Compare(raceVM.DateRace, DateTime.Now) < 0)
-            {
                 errorObj.DateRace = "La date de la course doit être supérieure ou égale à la date du jour.";
-            }
+
             if (raceVM.Name == null)
-            {
                 errorObj.Name = "Le champ Nom de la course doit être renseigné.";
-            }
+
             if (raceVM.PlacesNumber <= 0)
-            {
                 errorObj.PlacesNumber = "Le nombre de place doit être supérieur à 0.";
-            }
+
             if (raceVM.Price == 0)
-            {
                 errorObj.Price = "Le prix de la course doit être supérieur à 0.";
-            }
+
             if (raceVM.RaceTypeId == null)
-            {
                 errorObj.RaceTypeId = "Le champ Type de course doit être renseigné.";
-            }
+
             if (raceVM.ZipCode == null)
-            {
                 errorObj.ZipCode = "Le champ Code postal doit être renseigné.";
-            }
 
             if (ModelState.IsValid)
             {
