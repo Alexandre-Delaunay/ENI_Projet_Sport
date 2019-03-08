@@ -1,14 +1,14 @@
 ﻿@model ENI_Projet_Sport.ViewModels.CreateEditRaceViewModel
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Ajouter une course";
 }
 <style>
     #mapid {
         height: 300px;
     }
 </style>
-<h2>Create</h2>
+<h2>Ajouter une course</h2>
 
 
 @using (Html.BeginForm()) 
@@ -16,7 +16,6 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Race</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
@@ -84,16 +83,18 @@
         </div>
 
         <div id="mapid"></div>
+        @Html.ValidationMessageFor(model => model.POIs, "", new { @class = "text-danger" })
+
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="button" value="Create" class="btn btn-default" onclick="send_to_controller();"/>
+                <input type="button" value="Ajouter" class="btn btn-default" onclick="send_to_controller();"/>
             </div>
         </div>
     </div>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Retour à la liste", "Index")
 </div>
 
 @section Scripts {
@@ -126,49 +127,66 @@
         var POIs = []
 
         routeControl.getWaypoints().forEach(function(poi){
-            POIs.push({
-                Latitude: poi.latLng.lat.toString().replace('.', ','),
-                Longitude: poi.latLng.lng.toString().replace('.', ','),
-                CategoryPOI: { ID: 0, Name: "Départ", DateMAJ : '2010-10-10'}
-            })
-        });
-        console.log(POIs)
-
-        var raceVM = {
-            Name: $("#Name").val(),
-            DateRace: $("#DateRace").val(),
-            PlacesNumber: $("#PlacesNumber").val(),
-            City: $("#City").val(),
-            ZipCode: $("#ZipCode").val(),
-            Price: $("#Price").val(),
-            Description: $("#Description").val(),    
-            RaceTypeId: $("#RaceTypeId").val(),
-            Distance: get_total_distance(),
-            POIs: POIs,
-        }
-
-        console.log(typeof raceVM.Distance);
-        console.log(raceVM);
-        
-        $.ajax({
-            type: "POST",
-            url: "/Races/Create",
-            data: raceVM,
-            dataType: "application/json",
-            complete: function(data){
-                console.log(data)
-                if(data.status == 200){
-                    document.location.href = '/Races';
-                }
-                else{
-                    alert('Une erreur est survenue.');
-                }
+            if(poi.latLng!=null){
+                POIs.push({
+                    Latitude: poi.latLng.lat.toString().replace('.', ','),
+                    Longitude: poi.latLng.lng.toString().replace('.', ','),
+                    CategoryPOI: { ID: 0, Name: "Départ", DateMAJ : '2010-10-10'}
+                });
             }
         });
+        if(POIs.length < 2){
+            $.alert({
+                title: 'Attention!',
+                content: 'Veuillez selectionner au minimum 2 POI.',
+            });
+        }
+        else{
+            var raceVM = {
+                Name: $("#Name").val(),
+                DateRace: $("#DateRace").val(),
+                PlacesNumber: $("#PlacesNumber").val(),
+                City: $("#City").val(),
+                ZipCode: $("#ZipCode").val(),
+                Price: $("#Price").val(),
+                Description: $("#Description").val(),    
+                RaceTypeId: $("#RaceTypeId").val(),
+                Distance: get_total_distance(),
+                POIs: POIs,
+            }
+        
+            $.ajax({
+                type: "POST",
+                url: "/Races/Create",
+                data: raceVM,
+                dataType: "application/json",
+                complete: function(data){
+                    if(data.status == 200){
+                        document.location.href = '/Races';
+                    }
+                    else{
+                        var obj = JSON.parse(data.statusText);
+                        obj.forEach(function(error){
+                            var span = $('span[data-valmsg-for="'+error.Key+'"]')[0];
+                            $(span).html(error.Value);
+                            $('#'+error.Key).on('change', function(){
+                                $(span).html('');
+                            });
+                        });
+                        $.alert({
+                            title: 'Erreur!',
+                            content: 'Une erreur est survenue, veuillez vérifier chaque champ du formulaire.',
+                        });
+                    }
+                }
+            });
+        }
     }
 
     function get_total_distance(){
-        console.log(routeControl._routes[0].summary.totalDistance.toString().replace('.', ','))
-        return routeControl._routes[0].summary.totalDistance.toString().replace('.', ',');
+        if(routeControl._routes!=null){
+            return routeControl._routes[0].summary.totalDistance.toString().replace('.', ',');
+        }
+        return 0;
     }
 </script>

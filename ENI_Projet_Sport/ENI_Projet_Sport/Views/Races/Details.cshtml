@@ -1,15 +1,14 @@
 ﻿@model ENI_Projet_Sport.ViewModels.RaceViewModel
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Détail d'une course";
 }
 <style>
     #mapid { height: 300px; }
 </style>
-<h2>Details</h2>
+<h2>Détail d'une course</h2>
 
 <div>
-    <h4>Race</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -82,8 +81,8 @@
 </div>
 <div id="mapid"></div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Modifier", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Retour à la liste", "Index")
 </p>
 
 <script>
