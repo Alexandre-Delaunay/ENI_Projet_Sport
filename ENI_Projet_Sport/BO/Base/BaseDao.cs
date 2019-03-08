@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Migrations;
 using System.Linq;
 
 namespace BO.Base
@@ -16,7 +17,8 @@ namespace BO.Base
             var success = false;
             if (entity != null)
             {
-                ApplicationDbContextSingleton.ContextInstance.Entry(entity).State = EntityState.Deleted;
+                //ApplicationDbContextSingleton.ContextInstance.Entry(entity).State = EntityState.Deleted;
+                ApplicationDbContextSingleton.ContextInstance.Set<T>().Remove(entity);
             }
 
             return success;
@@ -57,7 +59,8 @@ namespace BO.Base
 
             if (entity != null)
             {
-                ApplicationDbContextSingleton.ContextInstance.Entry(entity).State = EntityState.Modified;
+                //ApplicationDbContextSingleton.ContextInstance.Entry(entity).State = EntityState.Modified;
+                ApplicationDbContextSingleton.ContextInstance.Set<T>().AddOrUpdate(entity);
                 success = true;
             }
 
